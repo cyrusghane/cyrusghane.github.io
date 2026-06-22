@@ -127,8 +127,9 @@ nav a[aria-current="page"]::after { right: 0; background: var(--line-strong); }
 
 /* ---------- portrait ---------- */
 .portrait {
-  width: 84px;
-  height: 84px;
+  width: 112px;
+  height: 112px;
+  align-self: end;          /* drop it down level with the nav / contact */
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -302,7 +303,7 @@ footer .credit { color: var(--faint); font-size: 0.76rem; }
     gap: 1.1rem;
     margin-bottom: 2.6rem;
   }
-  .portrait { width: 72px; height: 72px; order: -1; }
+  .portrait { width: 88px; height: 88px; order: -1; align-self: start; }
   nav { margin-top: 1rem; gap: 0.3rem 1.2rem; }
   .work li { grid-template-columns: 1fr; gap: 0.45rem; }
   .work-year { padding-top: 0; }
