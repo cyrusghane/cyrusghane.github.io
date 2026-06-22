@@ -127,8 +127,8 @@ nav a[aria-current="page"]::after { right: 0; background: var(--line-strong); }
 
 /* ---------- portrait ---------- */
 .portrait {
-  width: 112px;
-  height: 112px;
+  width: 128px;
+  height: 128px;
   align-self: end;          /* drop it down level with the nav / contact */
   border-radius: 50%;
   overflow: hidden;
