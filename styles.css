@@ -179,6 +179,14 @@ section {
   margin-bottom: 1.5rem;
 }
 .lede em { font-style: italic; }
+.lede a, .prose a {
+  color: var(--accent-deep);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-strong);
+  transition: border-color 0.22s ease, color 0.22s ease;
+}
+.lede a:hover, .prose a:hover,
+.lede a:focus-visible, .prose a:focus-visible { border-bottom-color: var(--accent); color: var(--accent); }
 
 .prose {
   font-size: 0.97rem;
