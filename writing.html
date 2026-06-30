@@ -16,8 +16,33 @@ gtag('config', 'G-7ZV7LSVQRZ');
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,330..600;1,9..144,360..520&family=Inter:wght@400;450;500;600&display=swap">
-<link rel="stylesheet" href="styles.css?v=10">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,330..600;1,9..144,360..520&family=Inter:wght@400;450;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=13">
+<style>
+  /* match the about page: muted, pad-free pond */
+  #bg{ filter:saturate(0.62) sepia(0.06) brightness(1.03) contrast(0.97); opacity:0.7; }
+
+  .post-list{ list-style:none; }
+  .post-list li{
+    display:flex; justify-content:space-between; align-items:baseline; gap:1.4rem;
+    padding:1.3rem 0; border-top:1px solid var(--line);
+  }
+  .post-list li:first-child{ border-top:none; padding-top:0.2rem; }
+  .post-list .post-link{
+    font-family:"EB Garamond",Georgia,serif; font-weight:500;
+    font-size:1.28rem; line-height:1.3; letter-spacing:-0.005em;
+    color:var(--ink); text-decoration:none; transition:color 0.2s ease;
+  }
+  .post-list .post-link:hover,
+  .post-list .post-link:focus-visible{ color:var(--accent); outline:none; }
+  .post-list .post-when{
+    font-family:"EB Garamond",Georgia,serif; font-size:1.05rem;
+    color:var(--faint); white-space:nowrap; font-variant-numeric:lining-nums;
+  }
+  @media (max-width:600px){
+    .post-list li{ flex-direction:column; gap:0.3rem; align-items:flex-start; }
+  }
+</style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
@@ -34,7 +59,7 @@ gtag('config', 'G-7ZV7LSVQRZ');
       </nav>
     </div>
     <div class="portrait">
-      <img src="assets/portrait.jpg" alt="Cyrus Ghane" onerror="this.closest('.portrait').style.display='none'">
+      <img src="assets/headshot.png?v=2" alt="Cyrus Ghane" onerror="this.closest('.portrait').style.display='none'">
     </div>
   </header>
 
@@ -54,6 +79,6 @@ gtag('config', 'G-7ZV7LSVQRZ');
   </footer>
 
 </div>
-<script src="app.js?v=10"></script>
+<script src="app-muted.js?v=2"></script>
 </body>
 </html>

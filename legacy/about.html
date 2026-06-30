@@ -4,26 +4,31 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZV7LSVQRZ"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+function gtag(){gtag.q=gtag.q||[];dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-7ZV7LSVQRZ');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyrus Ghane</title>
-<meta name="description" content="Cyrus Ghane — incoming Yale freshman interested in first-principles and physics-informed learning, sparsity, scaling laws, and vertical AI.">
+<title>Cyrus Ghane — legacy (full pond)</title>
+<meta name="description" content="Legacy landing variant — the full Water Lilies pond background.">
+<meta name="robots" content="noindex">
 <meta name="theme-color" content="#f6f3ec">
-<meta property="og:title" content="Cyrus Ghane">
-<meta property="og:description" content="First principles, physics-informed learning, sparsity, scaling laws, and vertical AI.">
-<meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=10">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,330..600;1,9..144,360..520&family=Inter:wght@400;450;500;600&display=swap">
-<link rel="stylesheet" href="styles.css?v=13">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,330..600;1,9..144,360..520&family=Inter:wght@400;450;500;600&display=swap">
+<link rel="stylesheet" href="../styles.css?v=13">
 <style>
-  /* page-specific only — header/portrait/type now come from the shared styles.css */
-  #bg{ filter:saturate(0.62) sepia(0.06) brightness(1.03) contrast(0.97); opacity:0.7; }
+  /* archived OLD look — pin fonts + the circular portrait, despite the shared styles.css moving on */
+  .site-name{ font-family:"Fraunces",Georgia,serif; font-weight:460; }
+  .lede{ font-family:"Fraunces",Georgia,serif; font-weight:360; font-size:1.32rem; line-height:1.46; letter-spacing:-0.011em; }
+  .prose{ font-family:"Inter",sans-serif; font-size:0.97rem; line-height:1.72; color:var(--soft); }
+  footer{ font-family:"Inter",sans-serif; font-size:0.82rem; }
+  header{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:1.2rem 2rem; align-items:start; }
+  .portrait{ width:128px; height:128px; align-self:end; border-radius:50%; overflow:hidden; background:#efe9dd;
+    box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 10px 26px rgba(48,45,39,.08); border:1px solid rgba(31,29,22,.06); }
+  .portrait img{ width:100%; height:100%; object-fit:cover; object-position:center 22%; }
 </style>
 </head>
 <body>
@@ -32,16 +37,16 @@ gtag('config', 'G-7ZV7LSVQRZ');
 
   <header>
     <div class="header-copy">
-      <a class="site-name" id="site-name" href="about.html" aria-label="Cyrus Ghane">Cyrus Ghane</a>
+      <a class="site-name" id="site-name" href="../about.html" aria-label="Cyrus Ghane">Cyrus Ghane</a>
       <nav>
-        <a href="about.html" aria-current="page">about</a>
-        <a href="work.html">work</a>
-        <a href="writing.html">writing</a>
+        <a href="../about.html" aria-current="page">about</a>
+        <a href="../work.html">work</a>
+        <a href="../writing.html">writing</a>
         <a href="mailto:cyrus.ghane@yale.edu">contact</a>
       </nav>
     </div>
     <div class="portrait">
-      <img src="assets/headshot.png?v=2" alt="Cyrus Ghane" onerror="this.closest('.portrait').style.display='none'">
+      <img src="../assets/portrait.jpg" alt="Cyrus Ghane" onerror="this.closest('.portrait').style.display='none'">
     </div>
   </header>
 
@@ -75,6 +80,6 @@ gtag('config', 'G-7ZV7LSVQRZ');
   </footer>
 
 </div>
-<script src="app-muted.js?v=2"></script>
+<script src="../app.js?v=10"></script>
 </body>
 </html>
