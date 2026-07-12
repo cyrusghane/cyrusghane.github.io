@@ -10,7 +10,7 @@ gtag('config', 'G-7ZV7LSVQRZ');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Canon — Cyrus Ghane</title>
+<title>My canon — Cyrus Ghane</title>
 <meta name="description" content="A working list of formative essays that have shaped my values and thinking.">
 <meta name="theme-color" content="#f6f3ec">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=10">
@@ -48,23 +48,24 @@ gtag('config', 'G-7ZV7LSVQRZ');
   .crit-n{ color:var(--accent);font-weight:500;font-variant-numeric:tabular-nums; }
 
   /* ---------- the canon list ---------- */
-  ul.canon{ list-style:none;margin:2.6rem 0 0;padding:0; }
+  ul.canon{ list-style:none;margin:1.9rem 0 0;padding:0;
+    border-top:1px solid var(--line); }
   ul.canon li{
-    padding:1.15rem 0;border-top:1px solid var(--line);
+    padding:.42rem 0;border-bottom:1px solid var(--line-soft);
+    font-size:1.14rem;line-height:1.4;
   }
-  ul.canon li:first-child{ border-top:1px solid var(--line-strong); }
+  ul.canon li:last-child{ border-bottom:none; }
   ul.canon .canon-link{
-    display:inline;font-family:"EB Garamond",Georgia,serif;font-weight:500;
-    font-size:1.24rem;line-height:1.3;letter-spacing:-.005em;
-    color:var(--ink);border-bottom:1px solid var(--line);
+    font-family:"EB Garamond",Georgia,serif;font-weight:500;
+    letter-spacing:-.005em;color:var(--ink);border-bottom:none;
   }
   ul.canon .canon-link:hover,
-  ul.canon .canon-link:focus-visible{ color:var(--accent);border-bottom-color:var(--accent);outline:none; }
+  ul.canon .canon-link:focus-visible{ color:var(--accent);outline:none; }
   ul.canon .canon-author{
-    display:block;margin-top:.3rem;
-    font-family:var(--sans);font-size:.74rem;font-weight:500;letter-spacing:.1em;
-    text-transform:uppercase;color:var(--muted);
+    font-family:"EB Garamond",Georgia,serif;font-style:italic;
+    color:var(--muted);letter-spacing:0;
   }
+  ul.canon .canon-author::before{ content:"  ·  ";font-style:normal;color:var(--faint); }
 
   /* footer note — last updated */
   .post p.updated{ font-size:0.9rem;line-height:1.55;color:var(--soft);
@@ -89,7 +90,7 @@ gtag('config', 'G-7ZV7LSVQRZ');
 
   <main>
     <article class="post">
-      <h1 class="post-title">My Canon</h1>
+      <h1 class="post-title">My canon</h1>
       <p class="post-date">July 12th, 2026</p>
 
       <p>A working list of formative essays and blogs that have shaped my values and thinking.</p>
@@ -98,40 +99,31 @@ gtag('config', 'G-7ZV7LSVQRZ');
 
       <ul class="canon">
         <li>
-          <a class="canon-link" href="https://www.benkuhn.net/attention/" target="_blank" rel="noopener">Attention is your scarcest resource</a>
-          <span class="canon-author">Ben Kuhn</span>
+          <a class="canon-link" href="https://www.benkuhn.net/attention/" target="_blank" rel="noopener">Attention is your scarcest resource</a><span class="canon-author">Ben Kuhn</span>
         </li>
         <li>
-          <a class="canon-link" href="https://milan.cvitkovic.net/writing/things_youre_allowed_to_do/" target="_blank" rel="noopener">Things you're allowed to do</a>
-          <span class="canon-author">Milan Cvitkovic</span>
+          <a class="canon-link" href="https://milan.cvitkovic.net/writing/things_youre_allowed_to_do/" target="_blank" rel="noopener">Things you're allowed to do</a><span class="canon-author">Milan Cvitkovic</span>
         </li>
         <li>
-          <a class="canon-link" href="https://www.lewissociety.org/innerring/" target="_blank" rel="noopener">The Inner Ring</a>
-          <span class="canon-author">C. S. Lewis</span>
+          <a class="canon-link" href="https://www.lewissociety.org/innerring/" target="_blank" rel="noopener">The Inner Ring</a><span class="canon-author">C. S. Lewis</span>
         </li>
         <li>
-          <a class="canon-link" href="https://benjaminfspector.com/writing/esi" target="_blank" rel="noopener">Effective Startup Ideation</a>
-          <span class="canon-author">Benjamin F. Spector</span>
+          <a class="canon-link" href="https://benjaminfspector.com/writing/esi" target="_blank" rel="noopener">Effective Startup Ideation</a><span class="canon-author">Benjamin F. Spector</span>
         </li>
         <li>
-          <a class="canon-link" href="https://jameslin.bio/focus" target="_blank" rel="noopener">Focus</a>
-          <span class="canon-author">James Lin</span>
+          <a class="canon-link" href="https://jameslin.bio/focus" target="_blank" rel="noopener">Focus</a><span class="canon-author">James Lin</span>
         </li>
         <li>
-          <a class="canon-link" href="https://nabeelqu.co/understanding" target="_blank" rel="noopener">How To Understand Things</a>
-          <span class="canon-author">Nabeel Qureshi</span>
+          <a class="canon-link" href="https://nabeelqu.co/understanding" target="_blank" rel="noopener">How To Understand Things</a><span class="canon-author">Nabeel Qureshi</span>
         </li>
         <li>
-          <a class="canon-link" href="https://www.paulgraham.com/hs.html" target="_blank" rel="noopener">What You'll Wish You'd Known</a>
-          <span class="canon-author">Paul Graham</span>
+          <a class="canon-link" href="https://www.paulgraham.com/hs.html" target="_blank" rel="noopener">What You'll Wish You'd Known</a><span class="canon-author">Paul Graham</span>
         </li>
         <li>
-          <a class="canon-link" href="https://www.lesswrong.com/posts/cGFBqg9SKsqbuzNHF/levels-of-superpersuasion" target="_blank" rel="noopener">Levels of Superpersuasion</a>
-          <span class="canon-author">Bill Jackson</span>
+          <a class="canon-link" href="https://www.lesswrong.com/posts/cGFBqg9SKsqbuzNHF/levels-of-superpersuasion" target="_blank" rel="noopener">Levels of Superpersuasion</a><span class="canon-author">Bill Jackson</span>
         </li>
         <li>
-          <a class="canon-link" href="https://avikrishna.substack.com/p/enslopification" target="_blank" rel="noopener">Enslopification</a>
-          <span class="canon-author">Avi Krishna</span>
+          <a class="canon-link" href="https://avikrishna.substack.com/p/enslopification" target="_blank" rel="noopener">Enslopification</a><span class="canon-author">Avi Krishna</span>
         </li>
       </ul>
 
