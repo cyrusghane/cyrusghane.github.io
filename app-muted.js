@@ -2,22 +2,6 @@
    IDENTICAL to app.js except the lily-pad block (pads + pad-shadows + pink bloom)
    is removed from the pond shader, leaving just the soft reflective color wash. */
 
-/* ---- name: gentle staggered entrance (no jiggle) ---- */
-(function () {
-  var el = document.getElementById("site-name");
-  if (!el) return;
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var text = el.textContent;
-  el.textContent = "";
-  [].forEach.call(text, function (ch, i) {
-    var span = document.createElement("span");
-    span.textContent = ch.charCodeAt(0) === 32 ? String.fromCharCode(160) : ch;   // nbsp keeps the gap in inline-block
-    span.setAttribute("aria-hidden", "true");
-    if (!reduce) span.style.animation = "letterIn 0.6s cubic-bezier(0.22,0.61,0.36,1) " + (i * 34) + "ms both";
-    el.appendChild(span);
-  });
-})();
-
 /* ---- scroll reveal ---- */
 (function () {
   var targets = document.querySelectorAll(".reveal");
