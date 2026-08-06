@@ -24,25 +24,23 @@ gtag('config', 'G-7ZV7LSVQRZ');
 <style>
   /* Cole's Oxbow, washed into the paper — the site's atmosphere */
   #bg{ display:none; }
-  body{ background-color:#f1eee5; }
+  body{ background-color:#f4f1ea; }
   html{ font-size:21px; overflow-x:hidden; }
   @media (max-width:640px){ html{ font-size:18px; } }
   .container{ max-width:720px; }
   .scene{
     position:fixed; inset:0; z-index:0; pointer-events:none;
     background:url("/assets/oxbow-bg.jpg") center 44% / cover no-repeat;
-    filter:saturate(0.9) sepia(0.06) brightness(1.03) contrast(0.98);
+    filter:saturate(0.55) sepia(0.1) brightness(1.22) contrast(0.82);
     opacity:0; animation:sceneIn 1.8s ease 0.1s forwards;
   }
   .veil{
     position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:
-      linear-gradient(180deg, rgba(241,238,229,0.90) 0%, rgba(241,238,229,0.82) 38%,
-                              rgba(241,238,229,0.66) 70%, rgba(241,238,229,0.5) 100%),
-      radial-gradient(120% 80% at 30% 30%, rgba(241,238,229,0.55) 0%, rgba(241,238,229,0) 60%);
+    background:linear-gradient(180deg, rgba(244,241,234,0.72) 0%, rgba(244,241,234,0.60) 50%,
+                                       rgba(244,241,234,0.50) 100%);
   }
-  @keyframes sceneIn{ to{ opacity:1; } }
-  @media (prefers-reduced-motion:reduce){ .scene{ animation:none; opacity:1; } }
+  @keyframes sceneIn{ to{ opacity:0.42; } }
+  @media (prefers-reduced-motion:reduce){ .scene{ animation:none; opacity:0.42; } }
   /* footer links sit over the painting — darken so they stay readable */
   footer a{ color:var(--prose); }
   footer .sep{ color:var(--soft); }
