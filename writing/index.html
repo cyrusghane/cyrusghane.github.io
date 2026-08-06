@@ -19,8 +19,26 @@ gtag('config', 'G-7ZV7LSVQRZ');
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,330..600;1,9..144,360..520&family=Inter:wght@400;450;500;600&display=swap">
 <link rel="stylesheet" href="/styles.css?v=14">
 <style>
-  /* match the about page: muted, pad-free pond */
-  #bg{ filter:saturate(0.74) sepia(0.05) brightness(0.97) contrast(1.0); opacity:0.9; }
+  /* same atmosphere as home, pared to a single quiet tone */
+  #bg{ display:none; }
+  body{ background-color:#f1eee5; }
+  html{ font-size:21px; }
+  .container{ max-width:720px; }
+  .wash{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:linear-gradient(180deg, #f3f0e8 0%, #f0ede3 46%, #e8e9d8 80%, #e0e4ce 100%);
+    opacity:0; animation:sceneIn 1.6s ease 0.1s forwards;
+  }
+  .streaks{
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.55;
+    background-image:repeating-linear-gradient(90deg,
+      rgba(74,64,48,0.03) 0px, rgba(74,64,48,0.03) 1px,
+      transparent 1px, transparent 4px,
+      rgba(74,64,48,0.014) 4px, rgba(74,64,48,0.014) 5px,
+      transparent 5px, transparent 9px);
+  }
+  @keyframes sceneIn{ to{ opacity:1; } }
+  @media (prefers-reduced-motion:reduce){ .wash{ animation:none; opacity:1; } }
 
   .post-list{ list-style:none; }
   .post-list li{
@@ -45,6 +63,8 @@ gtag('config', 'G-7ZV7LSVQRZ');
 </style>
 </head>
 <body>
+<div class="wash" aria-hidden="true"></div>
+<div class="streaks" aria-hidden="true"></div>
 <canvas id="bg" aria-hidden="true"></canvas>
 <div class="container">
 
