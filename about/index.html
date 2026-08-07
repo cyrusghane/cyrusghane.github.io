@@ -46,6 +46,22 @@ gtag('config', 'G-7ZV7LSVQRZ');
   footer .sep{ color:var(--soft); }
   /* darker body prose over the painting */
   .prose{ color:#131210; }
+  /* "Email" reveals the address on hover */
+  .email-hint{ position:relative; }
+  .email-hint .eh-tip{
+    position:absolute; left:50%; bottom:calc(100% + 0.45rem);
+    transform:translate(-50%, 4px);
+    white-space:nowrap;
+    font-family:var(--sans); font-size:0.7rem; font-weight:450; letter-spacing:0.012em;
+    color:var(--prose); background:rgba(250,248,242,0.97);
+    border:1px solid var(--line-strong); border-radius:3px;
+    padding:0.32rem 0.56rem;
+    box-shadow:0 6px 18px rgba(50,42,30,0.13);
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  }
+  .email-hint:hover .eh-tip,
+  .email-hint:focus-visible .eh-tip{ opacity:1; visibility:visible; transform:translate(-50%, 0); }
 </style>
 </head>
 <body>
@@ -74,18 +90,15 @@ gtag('config', 'G-7ZV7LSVQRZ');
       <h1 class="section-label">About</h1>
       <p class="lede">
         I&rsquo;m an incoming freshman at Yale broadly interested in first principles and
-        physics-informed learning, sparsity, scaling laws, and vertical AI. Currently
+        physics-informed learning, sparsity, scaling laws, people, and vertical AI. Currently
         a Summer Investor @ <a href="https://tq.vc" target="_blank" rel="noopener">TQ Ventures</a>.
       </p>
       <p class="prose">
-        I have a soft spot for biophysics and am optimistic that we will someday discover a
-        &ldquo;grand unified theory of human disease biology&rdquo; &mdash; a combination of physical and
-        computational frameworks to explain the macro and microscale organization of the body.
-      </p>
-      <p class="prose">
-        When not thinking about the aforementioned subjects, I amuse myself with reading and
-        conversations. If you have any recommendations for thought-provoking blogs or novels,
-        I&rsquo;d be happy to trade.
+        When not thinking about those subjects, I enjoy reading, asking/answering piercing
+        questions, walking, conversations, cloudy days, happiness optimization, and moderately
+        surprising things.
+        <a class="email-hint" href="mailto:cyrus.ghane@yale.edu" aria-label="Email cyrus.ghane@yale.edu">Email<span class="eh-tip" aria-hidden="true">cyrus.ghane@yale.edu</span></a>
+        me with thought-filled blogs &amp; novels&hellip; I&rsquo;m always happy to trade.
       </p>
     </section>
   </main>
