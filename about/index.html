@@ -46,22 +46,20 @@ gtag('config', 'G-7ZV7LSVQRZ');
   footer .sep{ color:var(--soft); }
   /* darker body prose over the painting */
   .prose{ color:#131210; }
-  /* "Email" reveals the address on hover */
+  /* "Email" reveals the address on hover — no box, just a whisper of text */
   .email-hint{ position:relative; }
   .email-hint .eh-tip{
-    position:absolute; left:50%; bottom:calc(100% + 0.45rem);
-    transform:translate(-50%, 4px);
+    position:absolute; left:50%; bottom:calc(100% + 0.1rem);
+    transform:translate(-50%, 3px);
     white-space:nowrap;
-    font-family:var(--sans); font-size:0.7rem; font-weight:450; letter-spacing:0.012em;
-    color:var(--prose); background:rgba(250,248,242,0.97);
-    border:1px solid var(--line-strong); border-radius:3px;
-    padding:0.32rem 0.56rem;
-    box-shadow:0 6px 18px rgba(50,42,30,0.13);
-    opacity:0; visibility:hidden; pointer-events:none;
-    transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    font-family:var(--sans); font-size:0.62rem; font-weight:500; letter-spacing:0.05em;
+    color:var(--soft);
+    background:#f4f1ea; border-radius:2px; padding:0.22rem 0.5rem;
+    opacity:0; pointer-events:none;
+    transition:opacity 0.28s ease, transform 0.28s ease;
   }
   .email-hint:hover .eh-tip,
-  .email-hint:focus-visible .eh-tip{ opacity:1; visibility:visible; transform:translate(-50%, 0); }
+  .email-hint:focus-visible .eh-tip{ opacity:1; transform:translate(-50%, 0); }
 </style>
 </head>
 <body>
@@ -98,7 +96,7 @@ gtag('config', 'G-7ZV7LSVQRZ');
         questions, walking, conversations, cloudy days, happiness optimization, and moderately
         surprising things.
         <a class="email-hint" href="mailto:cyrus.ghane@yale.edu" aria-label="Email cyrus.ghane@yale.edu">Email<span class="eh-tip" aria-hidden="true">cyrus.ghane@yale.edu</span></a>
-        me with thought-filled blogs &amp; novels&hellip; I&rsquo;m always happy to trade.
+        me with thought-filled blogs &amp; novels &hellip; I&rsquo;m always happy to trade.
       </p>
     </section>
   </main>
