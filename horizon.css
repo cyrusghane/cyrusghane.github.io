@@ -22,7 +22,7 @@ body.inner .scene,body.inner .veil{position:absolute;inset:auto;top:0;left:0;rig
 /* inner pages: the same painting, but softened into a quiet field so the words have the room */
 body.inner .scene{overflow:hidden;background:none;filter:none}
 body.inner .scene::before{content:"";position:absolute;inset:-40px;
-  background:url("/assets/oxbow.jpg") center 44%/cover no-repeat;
+  background:url("/assets/oxbow.jpg?v=2") center 44%/cover no-repeat;
   filter:blur(20px) saturate(.7) brightness(.74) contrast(.96)}
 body.inner .veil{background:
     linear-gradient(0deg,var(--ground) 0%,rgba(44,49,45,.86) 12%,rgba(44,49,45,0) 44%),
@@ -30,7 +30,7 @@ body.inner .veil{background:
 
 /* ---------- the painting, veiled in haze ---------- */
 .scene{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:url("/assets/oxbow.jpg") center 44%/cover no-repeat;
+  background:url("/assets/oxbow.jpg?v=2") center 44%/cover no-repeat;
   filter:saturate(.8) brightness(.97) contrast(.96);
   opacity:0;animation:sceneIn 1.8s ease .05s forwards}
 @keyframes sceneIn{to{opacity:1}}
@@ -46,7 +46,7 @@ body.inner .veil{background:
   border:1px solid rgba(247,244,238,.92);box-shadow:0 0 0 1px rgba(0,0,0,.12);
   opacity:0;animation:loupeIn 1.4s ease 1.2s forwards;will-change:transform}
 @keyframes loupeIn{to{opacity:1}}
-.loupe .glass{position:absolute;inset:0;background:url("/assets/oxbow.jpg") no-repeat 0 0}
+.loupe .glass{position:absolute;inset:0;background:url("/assets/oxbow.jpg?v=2") no-repeat 0 0}
 
 /* ---------- the first screen: the horizon, extended into a rule; the name rests on it ---------- */
 .stage{position:relative;z-index:4;min-height:100vh;min-height:100svh}
