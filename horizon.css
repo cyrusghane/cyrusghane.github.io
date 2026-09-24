@@ -1,0 +1,123 @@
+/* v2/horizon — the Oxbow, its horizon, and the words that hang from it */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  /* words on the painting */
+  --paper:#f7f4ee; --paper-80:rgba(247,244,238,.8); --paper-60:rgba(247,244,238,.6); --hair:rgba(247,244,238,.62);
+  --ground:#262a28;                 /* what the painting dissolves into below the first screen */
+  --hair-soft:rgba(247,244,238,.18);
+  --gutter:2.6rem;
+}
+html{font-size:17px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:var(--sans);background:#3a3d3b;color:var(--paper);min-height:100vh;min-height:100svh;overflow-x:hidden}
+body.landing{overflow:hidden}
+body.inner{background:var(--ground)}
+body.inner .scene,body.inner .veil{position:absolute;inset:auto;top:0;left:0;right:0;height:100vh;height:100svh}
+/* inner pages: the same painting, but softened into a quiet field so the words have the room */
+body.inner .scene{overflow:hidden;background:none;filter:none}
+body.inner .scene::before{content:"";position:absolute;inset:-40px;
+  background:url("/assets/oxbow.jpg") center 44%/cover no-repeat;
+  filter:blur(20px) saturate(.55) brightness(.62) contrast(.96)}
+body.inner .veil{background:
+    linear-gradient(0deg,var(--ground) 0%,rgba(38,42,40,.86) 12%,rgba(38,42,40,0) 44%),
+    linear-gradient(rgba(72,86,98,.14),rgba(72,86,98,.14))}
+
+/* ---------- the painting, veiled in haze ---------- */
+.scene{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:url("/assets/oxbow.jpg") center 44%/cover no-repeat;
+  filter:saturate(.68) brightness(.9) contrast(.97);
+  opacity:0;animation:sceneIn 1.8s ease .05s forwards}
+@keyframes sceneIn{to{opacity:1}}
+.veil{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(10,12,14,.16) 0%,rgba(10,12,14,0) 28%),
+    linear-gradient(0deg,rgba(10,12,14,.44) 0%,rgba(10,12,14,.14) 38%,rgba(10,12,14,0) 58%),
+    radial-gradient(115% 85% at 50% 50%,rgba(0,0,0,0) 60%,rgba(0,0,0,.22) 100%),
+    linear-gradient(rgba(72,86,98,.14),rgba(72,86,98,.14))}
+
+/* ---------- the loupe — a clear window in the haze, a little closer (landing only) ---------- */
+.loupe{position:fixed;left:0;top:0;z-index:3;width:202px;height:202px;pointer-events:none;
+  border:1px solid rgba(247,244,238,.92);box-shadow:0 0 0 1px rgba(0,0,0,.12);
+  opacity:0;animation:loupeIn 1.4s ease 1.2s forwards;will-change:transform}
+@keyframes loupeIn{to{opacity:1}}
+.loupe .glass{position:absolute;inset:0;background:url("/assets/oxbow.jpg") no-repeat 0 0}
+
+/* ---------- the first screen: the horizon, extended into a rule; the name rests on it ---------- */
+.stage{position:relative;z-index:4;min-height:100vh;min-height:100svh}
+body.landing .stage{height:100vh;height:100svh}
+.horizon{position:absolute;left:0;right:0;top:55%;height:1px;pointer-events:none;background:var(--hair);
+  transform:scaleX(0);transform-origin:0 50%;animation:draw 1.7s cubic-bezier(.22,.61,.36,1) .45s forwards}
+@keyframes draw{to{transform:scaleX(1)}}
+.cluster{position:absolute;left:var(--gutter);top:55%;width:min(33rem,calc(100vw - 2*var(--gutter)))}
+body.inner .cluster{width:min(38rem,calc(100vw - 2*var(--gutter)))}
+.shelf{position:absolute;left:0;top:0;height:0}
+.name{position:absolute;left:0;bottom:.08em;line-height:1.35;white-space:nowrap;
+  font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,3.2vw,2.55rem);letter-spacing:-.008em;
+  color:var(--paper);text-decoration:none}
+nav{display:flex;flex-wrap:wrap;gap:.3rem 1.55rem;padding-top:1.05rem;font-size:.8rem;font-weight:450;letter-spacing:.01em}
+nav a{position:relative;color:var(--paper-80);text-decoration:none;padding-bottom:1px;transition:color .25s ease}
+nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1px;background:var(--paper);
+  transition:right .3s cubic-bezier(.22,.61,.36,1)}
+nav a:hover,nav a:focus-visible{color:var(--paper);outline:none}
+nav a:hover::after,nav a:focus-visible::after{right:0}
+nav a[aria-current="page"]{color:var(--paper)}
+nav a[aria-current="page"]::after{right:0;background:var(--hair)}
+.bio{margin-top:1.5rem;font-family:var(--serif);font-size:1.14rem;line-height:1.45;color:rgba(247,244,238,.92)}
+.bio a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .25s ease}
+.bio a:hover,.bio a:focus-visible{border-bottom-color:var(--paper);outline:none}
+.links{position:absolute;right:var(--gutter);bottom:2.2rem;font-size:.76rem;letter-spacing:.03em;color:var(--paper-60)}
+.links a{color:var(--paper-80);text-decoration:none;transition:color .25s ease}
+.links a:hover,.links a:focus-visible{color:var(--paper);outline:none}
+.links .sep{margin:0 .5rem}
+
+/* ---------- the lists: hang from the nav, in the same white as the bio ---------- */
+.list{list-style:none;margin-top:1.9rem}
+.list li{border-top:1px solid var(--hair-soft)}
+.list li:first-child{border-top:none}
+.work li{display:grid;grid-template-columns:1fr auto;gap:0 1.4rem;padding:1.45rem 0;align-items:start}
+.work li:first-child{padding-top:.1rem}
+.work-title{font-family:var(--serif);font-weight:500;font-size:1.24rem;line-height:1.28;color:var(--paper)}
+.work-org{margin-top:.45rem;font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-60)}
+.work-desc{font-family:var(--serif);margin-top:.7rem;font-size:1.06rem;line-height:1.5;color:var(--paper-80);max-width:34rem}
+.work-links{margin-top:.8rem;font-size:.78rem;letter-spacing:.02em;color:var(--paper-60)}
+.work-links a{color:var(--paper-80);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:color .2s ease,border-color .2s ease}
+.work-links a:hover,.work-links a:focus-visible{color:var(--paper);border-bottom-color:var(--paper);outline:none}
+.work-links .sep{margin:0 .55rem}
+.work-year{font-size:.78rem;color:var(--paper-60);white-space:nowrap;padding-top:.25rem;font-variant-numeric:tabular-nums}
+.posts li{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;padding:1.25rem 0}
+.posts li:first-child{padding-top:.1rem}
+.post-link{font-family:var(--serif);font-weight:500;font-size:1.24rem;line-height:1.3;letter-spacing:-.005em;color:var(--paper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s ease}
+.post-link:hover,.post-link:focus-visible{border-bottom-color:var(--hair);outline:none}
+.post-when{font-family:var(--serif);font-size:1rem;color:var(--paper-60);white-space:nowrap;font-variant-numeric:lining-nums}
+.post-desc{font-family:var(--serif);font-size:1rem;line-height:1.45;color:var(--paper-80);margin-top:.3rem;max-width:32rem}
+
+/* the foot of an inner page, on the ground */
+.foot{position:relative;z-index:4;padding:0 var(--gutter) 2.4rem;font-size:.76rem;letter-spacing:.03em;color:var(--paper-60)}
+.foot a{color:var(--paper-80);text-decoration:none;transition:color .25s ease}
+.foot a:hover,.foot a:focus-visible{color:var(--paper);outline:none}
+.foot .sep{margin:0 .5rem}
+
+/* ---------- entrance ---------- */
+.name,nav,.bio,.links,.list,.foot{opacity:0;transform:translateY(6px);animation:rise .9s cubic-bezier(.22,.61,.36,1) forwards}
+.name{animation-delay:.8s} nav{animation-delay:.95s} .bio{animation-delay:1.1s} .links{animation-delay:1.25s} .list{animation-delay:1.1s} .foot{animation-delay:1.3s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ---------- responsive ---------- */
+@media (max-width:720px){
+  html{font-size:16px}
+  :root{--gutter:1.3rem}
+  .name{font-size:1.75rem}
+  nav{gap:.3rem 1.2rem;padding-top:.85rem}
+  .bio{margin-top:1.1rem;font-size:1.02rem}
+  .links{left:var(--gutter);right:auto;bottom:1.4rem}
+  .loupe{width:142px;height:142px}
+  .list{margin-top:1.5rem}
+  .work li{grid-template-columns:1fr;gap:.45rem;padding:1.2rem 0}
+  .work-year{padding-top:0}
+  .posts li{flex-direction:column;gap:.3rem;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  .scene,.loupe,.horizon,.name,nav,.bio,.links,.list,.foot{animation:none;opacity:1;transform:none}
+  nav a::after{transition:none}
+}

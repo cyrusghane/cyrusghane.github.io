@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZV7LSVQRZ"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -8,129 +10,49 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-7ZV7LSVQRZ');
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blogs — Cyrus Ghane</title>
-<meta name="description" content="Blogs by Cyrus Ghane.">
-<meta name="theme-color" content="#f6f3ec">
+<meta name="description" content="Writing by Cyrus Ghane — essays, primers, and a working canon.">
+<meta name="theme-color" content="#3a3d3b">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,330..600;1,9..144,360..520&family=Inter:wght@400;450;500;600&display=swap">
-<link rel="stylesheet" href="/styles.css?v=14">
-<style>
-  /* same atmosphere as home, pared to a single quiet tone */
-  #bg{ display:none; }
-  body{ background-color:#f1eee5; }
-  html{ font-size:21px; overflow-x:hidden; }
-  @media (max-width:640px){ html{ font-size:18px; } }
-  .container{ max-width:720px; }
-  .scene{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:url("/assets/oxbow-soft.jpg") center 44% / cover no-repeat;
-    filter:blur(22px) saturate(0.82) sepia(0.05) brightness(1.05) contrast(0.94);
-    transform:scale(1.12);
-    opacity:0; animation:sceneIn 1.6s ease 0.1s forwards;
-  }
-  .veil{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:
-      linear-gradient(180deg, rgba(241,238,229,0.92) 0%, rgba(241,238,229,0.86) 46%,
-                              rgba(241,238,229,0.76) 80%, rgba(241,238,229,0.66) 100%),
-      radial-gradient(120% 80% at 30% 28%, rgba(241,238,229,0.5) 0%, rgba(241,238,229,0) 60%);
-  }
-  .streaks{
-    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.55;
-    background-image:repeating-linear-gradient(90deg,
-      rgba(74,64,48,0.03) 0px, rgba(74,64,48,0.03) 1px,
-      transparent 1px, transparent 4px,
-      rgba(74,64,48,0.014) 4px, rgba(74,64,48,0.014) 5px,
-      transparent 5px, transparent 9px);
-  }
-  @keyframes sceneIn{ to{ opacity:1; } }
-  @media (prefers-reduced-motion:reduce){ .scene{ animation:none; opacity:1; } }
-
-  .post-list{ list-style:none; }
-  .post-list li{
-    display:flex; justify-content:space-between; align-items:baseline; gap:1.4rem;
-    padding:1.3rem 0; border-top:1px solid var(--line);
-  }
-  .post-list li:first-child{ border-top:none; padding-top:0.2rem; }
-  .post-list .post-link{
-    font-family:"EB Garamond",Georgia,serif; font-weight:500;
-    font-size:1.28rem; line-height:1.3; letter-spacing:-0.005em;
-    color:var(--ink); text-decoration:none; transition:color 0.2s ease;
-  }
-  .post-list .post-link:hover,
-  .post-list .post-link:focus-visible{ color:var(--accent); outline:none; }
-  .post-list .post-when{
-    font-family:"EB Garamond",Georgia,serif; font-size:1.05rem;
-    color:var(--faint); white-space:nowrap; font-variant-numeric:lining-nums;
-  }
-  .post-list .post-desc{
-    font-family:"EB Garamond",Georgia,serif; font-size:1rem; line-height:1.45;
-    color:var(--soft); margin-top:0.34rem; max-width:34rem;
-  }
-  @media (max-width:600px){
-    .post-list li{ flex-direction:column; gap:0.3rem; align-items:flex-start; }
-  }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;450;500;600&display=swap">
+<link rel="stylesheet" href="/horizon.css?v=1">
 </head>
-<body>
+<body class="inner">
 <div class="scene" aria-hidden="true"></div>
 <div class="veil" aria-hidden="true"></div>
-<div class="streaks" aria-hidden="true"></div>
-<canvas id="bg" aria-hidden="true"></canvas>
-<div class="container">
 
-  <header>
-    <div class="header-copy">
-      <a class="site-name" id="site-name" href="/about/" aria-label="Cyrus Ghane">Cyrus Ghane</a>
-      <nav>
-        <a href="/about/">about</a>
-        <a href="/work/">work</a>
-        <a href="/writing/" aria-current="page">blogs</a>
-        <a href="mailto:cyrus.ghane@yale.edu">contact</a>
-      </nav>
-    </div>
-    <div class="portrait">
-      <img src="/assets/headshot.png?v=2" alt="Cyrus Ghane" onerror="this.closest('.portrait').style.display='none'">
-    </div>
-  </header>
-
-  <main>
-    <section class="reveal">
-      <h1 class="section-label">Blogs</h1>
-      <ul class="post-list">
-        <li>
-          <div>
-            <a class="post-link" href="/canon/">My Canon</a>
-            <div class="post-desc">A working list of formative essays and blogs that have shaped my values and thinking.</div>
-          </div>
-          <div class="post-when">Jul 2026</div>
-        </li>
-        <li>
-          <div>
-            <a class="post-link" href="/physics-informed/">Before agentic, there was physics-informed</a>
-            <div class="post-desc">A slightly meandering primer to physics-informed ML.</div>
-          </div>
-          <div class="post-when">Jul 2026</div>
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <a href="mailto:cyrus.ghane@yale.edu">email</a>
-    <span class="sep">·</span>
-    <a href="https://www.linkedin.com/in/cyrusghane/" target="_blank" rel="noopener">linkedin</a>
-    <span class="sep">·</span>
-    <a href="https://x.com/cyrusghane" target="_blank" rel="noopener">x</a>
-    <span class="sep">·</span>
-    <a href="https://github.com/cyrusghane" target="_blank" rel="noopener">github</a>
-  </footer>
-
+<div class="stage">
+  <div class="horizon" aria-hidden="true"></div>
+  <div class="cluster">
+    <div class="shelf"><a class="name" href="/about/">Cyrus Ghane</a></div>
+    <nav>
+      <a href="/about/">about</a>
+      <a href="/work/">work</a>
+      <a href="/writing/" aria-current="page">blogs</a>
+      <a href="mailto:cyrus.ghane@yale.edu">contact</a>
+    </nav>
+<ul class="list posts">
+      <li>
+        <div>
+          <a class="post-link" href="/canon/">My Canon</a>
+          <div class="post-desc">A working list of formative essays and blogs that have shaped my values and thinking.</div>
+        </div>
+        <div class="post-when">Jul 2026</div>
+      </li>
+      <li>
+        <div>
+          <a class="post-link" href="/physics-informed/">Before agentic, there was physics-informed</a>
+          <div class="post-desc">A slightly meandering primer to physics-informed ML.</div>
+        </div>
+        <div class="post-when">Jul 2026</div>
+      </li>
+    </ul>
+  </div>
 </div>
-<script src="/app-muted.js?v=3"></script>
+
+<footer class="foot"><a href="mailto:cyrus.ghane@yale.edu">email</a><span class="sep">·</span><a href="https://www.linkedin.com/in/cyrusghane/" target="_blank" rel="noopener">linkedin</a><span class="sep">·</span><a href="https://x.com/cyrusghane" target="_blank" rel="noopener">x</a><span class="sep">·</span><a href="https://github.com/cyrusghane" target="_blank" rel="noopener">github</a></footer>
+<script src="/horizon.js?v=1"></script>
 </body>
 </html>
