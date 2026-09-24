@@ -55,7 +55,7 @@ body.landing .stage{height:100vh;height:100svh}
   transform:scaleX(0);transform-origin:0 50%;animation:draw 1.7s cubic-bezier(.22,.61,.36,1) .45s forwards}
 @keyframes draw{to{transform:scaleX(1)}}
 .cluster{position:absolute;left:var(--gutter);top:55%;width:min(38rem,calc(100vw - 2*var(--gutter)))}
-body.inner .cluster{width:min(44rem,calc(100vw - 2*var(--gutter)))}
+body.inner .cluster{width:min(62rem,calc(100vw - 2*var(--gutter)))}
 .shelf{position:absolute;left:0;top:0;height:0}
 .name{position:absolute;left:0;bottom:.08em;line-height:1.35;white-space:nowrap;
   font-family:var(--serif);font-weight:600;font-size:clamp(2.5rem,4.3vw,3.5rem);letter-spacing:-.012em;
@@ -80,22 +80,22 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
 .list{list-style:none;margin-top:2.2rem}
 .list li{border-top:1px solid var(--hair-soft)}
 .list li:first-child{border-top:none}
-.work li{display:grid;grid-template-columns:1fr auto;gap:0 1.6rem;padding:1.75rem 0;align-items:start}
+.work li{display:grid;grid-template-columns:1fr auto;gap:0 2rem;padding:2rem 0;align-items:start}
 .work li:first-child{padding-top:.1rem}
-.work-title{font-family:var(--serif);font-weight:500;font-size:1.55rem;line-height:1.25;color:var(--paper)}
+.work-title{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.22;color:var(--paper)}
 .work-org{margin-top:.55rem;font-size:.76rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-60)}
-.work-desc{font-family:var(--serif);margin-top:.8rem;font-size:1.24rem;line-height:1.5;color:var(--paper-80);max-width:41rem}
+.work-desc{font-family:var(--serif);margin-top:.85rem;font-size:1.3rem;line-height:1.5;color:var(--paper-80);max-width:58rem}
 .work-links{margin-top:.95rem;font-size:.88rem;letter-spacing:.02em;color:var(--paper-60)}
 .work-links a{color:var(--paper-80);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:color .2s ease,border-color .2s ease}
 .work-links a:hover,.work-links a:focus-visible{color:var(--paper);border-bottom-color:var(--paper);outline:none}
 .work-links .sep{margin:0 .55rem}
 .work-year{font-size:.9rem;color:var(--paper-80);white-space:nowrap;padding-top:.45rem;font-variant-numeric:tabular-nums}
-.posts li{display:flex;justify-content:space-between;align-items:baseline;gap:1.6rem;padding:1.55rem 0}
+.posts li{display:flex;justify-content:space-between;align-items:baseline;gap:2rem;padding:1.8rem 0}
 .posts li:first-child{padding-top:.1rem}
-.post-link{font-family:var(--serif);font-weight:500;font-size:1.55rem;line-height:1.25;letter-spacing:-.005em;color:var(--paper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s ease}
+.post-link{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.22;letter-spacing:-.005em;color:var(--paper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s ease}
 .post-link:hover,.post-link:focus-visible{border-bottom-color:var(--hair);outline:none}
 .post-when{font-family:var(--serif);font-size:1.15rem;color:var(--paper-80);white-space:nowrap;font-variant-numeric:lining-nums}
-.post-desc{font-family:var(--serif);font-size:1.2rem;line-height:1.45;color:var(--paper-80);margin-top:.4rem;max-width:40rem}
+.post-desc{font-family:var(--serif);font-size:1.26rem;line-height:1.45;color:var(--paper-80);margin-top:.45rem;max-width:56rem}
 
 /* ---------- a post: the same white, set for reading ---------- */
 .post{margin-top:2.1rem;font-family:var(--serif);color:var(--paper-80)}
