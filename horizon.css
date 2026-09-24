@@ -5,7 +5,7 @@
   --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   /* words on the painting */
   --paper:#f7f4ee; --paper-80:rgba(247,244,238,.8); --paper-60:rgba(247,244,238,.6); --hair:rgba(247,244,238,.62);
-  --ground:#262a28;                 /* what the painting dissolves into below the first screen */
+  --ground:#2c312d;                 /* what the painting dissolves into below the first screen */
   --hair-soft:rgba(247,244,238,.18);
   --sage:#b3c4b0; --rose:#d8a69d;    /* accents that read on the dark field */
   --gutter:2.6rem;
@@ -23,23 +23,23 @@ body.inner .scene,body.inner .veil{position:absolute;inset:auto;top:0;left:0;rig
 body.inner .scene{overflow:hidden;background:none;filter:none}
 body.inner .scene::before{content:"";position:absolute;inset:-40px;
   background:url("/assets/oxbow.jpg") center 44%/cover no-repeat;
-  filter:blur(20px) saturate(.55) brightness(.62) contrast(.96)}
+  filter:blur(20px) saturate(.7) brightness(.74) contrast(.96)}
 body.inner .veil{background:
-    linear-gradient(0deg,var(--ground) 0%,rgba(38,42,40,.86) 12%,rgba(38,42,40,0) 44%),
-    linear-gradient(rgba(72,86,98,.14),rgba(72,86,98,.14))}
+    linear-gradient(0deg,var(--ground) 0%,rgba(44,49,45,.86) 12%,rgba(44,49,45,0) 44%),
+    linear-gradient(rgba(150,120,80,.06),rgba(150,120,80,.06))}
 
 /* ---------- the painting, veiled in haze ---------- */
 .scene{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:url("/assets/oxbow.jpg") center 44%/cover no-repeat;
-  filter:saturate(.68) brightness(.9) contrast(.97);
+  filter:saturate(.8) brightness(.97) contrast(.96);
   opacity:0;animation:sceneIn 1.8s ease .05s forwards}
 @keyframes sceneIn{to{opacity:1}}
 .veil{position:fixed;inset:0;z-index:2;pointer-events:none;
   background:
     linear-gradient(180deg,rgba(10,12,14,.16) 0%,rgba(10,12,14,0) 28%),
-    linear-gradient(0deg,rgba(10,12,14,.44) 0%,rgba(10,12,14,.14) 38%,rgba(10,12,14,0) 58%),
-    radial-gradient(115% 85% at 50% 50%,rgba(0,0,0,0) 60%,rgba(0,0,0,.22) 100%),
-    linear-gradient(rgba(72,86,98,.14),rgba(72,86,98,.14))}
+    linear-gradient(0deg,rgba(10,12,14,.36) 0%,rgba(10,12,14,.1) 38%,rgba(10,12,14,0) 58%),
+    radial-gradient(115% 85% at 50% 50%,rgba(0,0,0,0) 62%,rgba(0,0,0,.14) 100%),
+    linear-gradient(rgba(150,120,80,.07),rgba(150,120,80,.07))}
 
 /* ---------- the loupe — a clear window in the haze, a little closer (landing only) ---------- */
 .loupe{position:fixed;left:0;top:0;z-index:3;width:202px;height:202px;pointer-events:none;
