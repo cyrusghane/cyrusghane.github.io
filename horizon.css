@@ -58,8 +58,8 @@ body.landing .stage{height:100vh;height:100svh}
 body.inner .cluster{width:min(44rem,calc(100vw - 2*var(--gutter)))}
 .shelf{position:absolute;left:0;top:0;height:0}
 .name{position:absolute;left:0;bottom:.08em;line-height:1.35;white-space:nowrap;
-  font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,3.8vw,3.1rem);letter-spacing:-.01em;
-  color:var(--paper);text-decoration:none}
+  font-family:var(--serif);font-weight:600;font-size:clamp(2.5rem,4.3vw,3.5rem);letter-spacing:-.012em;
+  color:var(--paper);text-decoration:none;text-shadow:0 1px 16px rgba(0,0,0,.28)}
 nav{display:flex;flex-wrap:wrap;gap:.3rem 1.75rem;padding-top:1.15rem;font-size:.88rem;font-weight:450;letter-spacing:.01em}
 nav a{position:relative;color:var(--paper-80);text-decoration:none;padding-bottom:1px;transition:color .25s ease}
 nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1px;background:var(--paper);
@@ -123,7 +123,7 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
 @media (max-width:720px){
   html{font-size:16px}
   :root{--gutter:1.3rem}
-  .name{font-size:2rem}
+  .name{font-size:2.25rem}
   nav{gap:.3rem 1.3rem;padding-top:.9rem;font-size:.84rem}
   .bio{margin-top:1.2rem;font-size:1.14rem}
   .links{left:var(--gutter);right:auto;bottom:1.4rem}
