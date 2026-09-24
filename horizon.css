@@ -22,7 +22,7 @@ body.inner .scene,body.inner .veil{position:absolute;inset:auto;top:0;left:0;rig
 /* inner pages: the same painting, but softened into a quiet field so the words have the room */
 body.inner .scene{overflow:hidden;background:none;filter:none}
 body.inner .scene::before{content:"";position:absolute;inset:-40px;
-  background:url("/assets/oxbow.jpg?v=3") center 44%/cover no-repeat;
+  background:url("/assets/oxbow.jpg?v=4") center 44%/cover no-repeat;
   filter:blur(20px) saturate(.7) brightness(.74) contrast(.96)}
 body.inner .veil{background:
     linear-gradient(0deg,var(--ground) 0%,rgba(44,49,45,.86) 12%,rgba(44,49,45,0) 44%),
@@ -30,7 +30,7 @@ body.inner .veil{background:
 
 /* ---------- the painting, veiled in haze ---------- */
 .scene{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:url("/assets/oxbow.jpg?v=3") center 44%/cover no-repeat;
+  background:url("/assets/oxbow.jpg?v=4") center 44%/cover no-repeat;
   filter:saturate(.8) brightness(.97) contrast(.96);
   opacity:0;animation:sceneIn 1.8s ease .05s forwards}
 @keyframes sceneIn{to{opacity:1}}
@@ -46,7 +46,7 @@ body.inner .veil{background:
   border:1px solid rgba(247,244,238,.92);box-shadow:0 0 0 1px rgba(0,0,0,.12);
   opacity:0;animation:loupeIn 1.4s ease 1.2s forwards;will-change:transform}
 @keyframes loupeIn{to{opacity:1}}
-.loupe .glass{position:absolute;inset:0;background:url("/assets/oxbow.jpg?v=3") no-repeat 0 0}
+.loupe .glass{position:absolute;inset:0;background:url("/assets/oxbow.jpg?v=4") no-repeat 0 0}
 
 /* ---------- the first screen: the horizon, extended into a rule; the name rests on it ---------- */
 .stage{position:relative;z-index:4;min-height:100vh;min-height:100svh}
@@ -54,13 +54,13 @@ body.landing .stage{height:100vh;height:100svh}
 .horizon{position:absolute;left:0;right:0;top:55%;height:1px;pointer-events:none;background:var(--hair);
   transform:scaleX(0);transform-origin:0 50%;animation:draw 1.7s cubic-bezier(.22,.61,.36,1) .45s forwards}
 @keyframes draw{to{transform:scaleX(1)}}
-.cluster{position:absolute;left:var(--gutter);top:55%;width:min(38rem,calc(100vw - 2*var(--gutter)))}
+.cluster{position:absolute;left:var(--gutter);top:55%;width:min(46rem,calc(100vw - 2*var(--gutter)))}
 body.inner .cluster{width:min(62rem,calc(100vw - 2*var(--gutter)))}
 .shelf{position:absolute;left:0;top:0;height:0}
 .name{position:absolute;left:0;bottom:.08em;line-height:1.35;white-space:nowrap;
-  font-family:var(--serif);font-weight:600;font-size:clamp(2.5rem,4.3vw,3.5rem);letter-spacing:-.012em;
+  font-family:var(--serif);font-weight:600;font-size:clamp(3rem,5.3vw,4.5rem);letter-spacing:-.014em;
   color:var(--paper);text-decoration:none;text-shadow:0 1px 16px rgba(0,0,0,.28)}
-nav{display:flex;flex-wrap:wrap;gap:.3rem 1.75rem;padding-top:1.15rem;font-size:.88rem;font-weight:450;letter-spacing:.01em}
+nav{display:flex;flex-wrap:wrap;gap:.3rem 2rem;padding-top:1.3rem;font-size:1.02rem;font-weight:450;letter-spacing:.01em}
 nav a{position:relative;color:var(--paper-80);text-decoration:none;padding-bottom:1px;transition:color .25s ease}
 nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1px;background:var(--paper);
   transition:right .3s cubic-bezier(.22,.61,.36,1)}
@@ -68,10 +68,10 @@ nav a:hover,nav a:focus-visible{color:var(--paper);outline:none}
 nav a:hover::after,nav a:focus-visible::after{right:0}
 nav a[aria-current="page"]{color:var(--paper)}
 nav a[aria-current="page"]::after{right:0;background:var(--hair)}
-.bio{margin-top:1.75rem;font-family:var(--serif);font-size:1.34rem;line-height:1.42;color:rgba(247,244,238,.92)}
+.bio{margin-top:1.9rem;font-family:var(--serif);font-size:1.62rem;line-height:1.38;color:rgba(247,244,238,.94)}
 .bio a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .25s ease}
 .bio a:hover,.bio a:focus-visible{border-bottom-color:var(--paper);outline:none}
-.links{position:absolute;right:var(--gutter);bottom:2.2rem;font-size:1.08rem;letter-spacing:.02em;color:var(--paper-80)}
+.links{position:absolute;right:var(--gutter);bottom:2.4rem;font-size:1.18rem;letter-spacing:.02em;color:var(--paper-80)}
 .links a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:border-color .25s ease}
 .links a:hover,.links a:focus-visible{border-bottom-color:var(--paper);outline:none}
 .links .sep{margin:0 .6rem}
@@ -123,9 +123,9 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
 @media (max-width:720px){
   html{font-size:16px}
   :root{--gutter:1.3rem}
-  .name{font-size:2.25rem}
-  nav{gap:.3rem 1.3rem;padding-top:.9rem;font-size:.84rem}
-  .bio{margin-top:1.2rem;font-size:1.14rem}
+  .name{font-size:2.5rem}
+  nav{gap:.3rem 1.4rem;padding-top:.95rem;font-size:.92rem}
+  .bio{margin-top:1.25rem;font-size:1.24rem}
   .links{left:var(--gutter);right:auto;bottom:1.4rem}
   .loupe{width:142px;height:142px}
   body.inner .stage{padding-top:6.4rem}
