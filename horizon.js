@@ -12,12 +12,12 @@
     vw=innerWidth; vh=innerHeight;
     var s=Math.max(vw/IW, vh/IH);          /* background-size: cover */
     W=IW*s; H=IH*s; ox=(vw-W)/2; oy=(vh-H)*PY;
-    var y=Math.round(oy+HZ*H);
+    var isInner=document.body.classList.contains('inner');
+    var rem=parseFloat(getComputedStyle(document.documentElement).fontSize);
+    var y=isInner ? Math.round((vw<720?6.4:7.6)*rem)      /* inner pages: the painting is a soft field, so the masthead sits near the top and the list fills the screen */
+                : Math.round(oy+HZ*H);                   /* landing: the rule IS the painting's horizon */
     horizon.style.top=y+'px'; cluster.style.top=y+'px';
-    if(document.body.classList.contains('inner')){   /* inner pages: the stage grows with the list; the foot follows in flow */
-      var rem=parseFloat(getComputedStyle(document.documentElement).fontSize);
-      document.querySelector('.stage').style.height=Math.max(vh, y+cluster.offsetHeight+3.6*rem)+'px';
-    }
+    if(isInner){ document.querySelector('.stage').style.height=Math.max(vh, y+cluster.offsetHeight+3.6*rem)+'px'; }
     if(!loupe) return;
     var S=loupe.offsetWidth; half=S/2; inner=S-2;
     glass.style.backgroundSize=(W*Z)+'px '+(H*Z)+'px';
