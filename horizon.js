@@ -28,13 +28,17 @@
   if(!loupe) return;
 
   cx=tx=rest.x; cy=ty=rest.y;
-  addEventListener('pointermove',function(e){ if(e.pointerType==='touch') return; tx=e.clientX; ty=e.clientY; });
-  document.documentElement.addEventListener('mouseleave',function(){ tx=rest.x; ty=rest.y; });
+  /* the label shows when the loupe comes to rest, and hides while it travels */
+  var idleT=setTimeout(function(){ loupe.classList.add('rest'); },1500);
+  function wake(){ loupe.classList.remove('rest'); clearTimeout(idleT); idleT=setTimeout(function(){ loupe.classList.add('rest'); },1100); }
+  addEventListener('pointermove',function(e){ if(e.pointerType==='touch') return; tx=e.clientX; ty=e.clientY; wake(); });
+  document.documentElement.addEventListener('mouseleave',function(){ tx=rest.x; ty=rest.y; wake(); });
 
   function frame(now){
     if(coarse && !reduce){ var t=(now-t0)/1000; tx=rest.x+vw*0.05*Math.sin(t*0.13); ty=rest.y+vh*0.04*Math.sin(t*0.19+1.3); }
     var k=reduce?1:0.11; cx+=(tx-cx)*k; cy+=(ty-cy)*k;
     loupe.style.transform='translate3d('+(cx-half)+'px,'+(cy-half)+'px,0)';
+    loupe.classList.toggle('up', cy+half+64>vh);        /* near the floor, the label sits above the square */
     var px=cx-ox, py=cy-oy;                /* the painting-pixel under the loupe's centre */
     glass.style.backgroundPosition=(inner/2-px*Z)+'px '+(inner/2-py*Z)+'px';
     requestAnimationFrame(frame);
