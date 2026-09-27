@@ -14,7 +14,7 @@
     W=IW*s; H=IH*s; ox=(vw-W)/2; oy=(vh-H)*PY;
     var isInner=document.body.classList.contains('inner');
     var y=Math.round(oy+HZ*H);               /* where the painting's horizon falls on this screen */
-    if(!isInner){ horizon.style.top=y+'px'; cluster.style.top=y+'px'; }   /* landing only: inner pages keep their masthead near the top in CSS */
+    if(!isInner){ horizon.style.top=y+'px'; cluster.style.top=y+'px'; var por=document.querySelector('.portrait'); if(por) por.style.top=y+'px'; }   /* landing only: inner pages keep their masthead near the top in CSS */
     if(!loupe) return;
     var S=loupe.offsetWidth; half=S/2; inner=S-2;
     glass.style.backgroundSize=(W*Z)+'px '+(H*Z)+'px';
