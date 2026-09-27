@@ -12,7 +12,14 @@
 }
 html{font-size:17px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body{font-family:var(--sans);background:#3a3d3b;color:var(--paper);min-height:100vh;min-height:100svh;overflow-x:hidden}
-body.landing{overflow:hidden}
+body.landing{overflow:hidden;background:#6f6353}
+/* the painting washed behind a warm screen, the way the legacy page sat behind cream */
+body.landing .scene{filter:saturate(.62) sepia(.22) brightness(1.06) contrast(.82);animation-name:sceneInWashed}
+@keyframes sceneInWashed{to{opacity:.6}}
+body.landing .veil{background:
+    linear-gradient(180deg,rgba(10,12,14,.08) 0%,rgba(10,12,14,0) 30%),
+    linear-gradient(0deg,rgba(10,12,14,.44) 0%,rgba(10,12,14,.14) 40%,rgba(10,12,14,0) 62%),
+    linear-gradient(rgba(150,126,92,.3),rgba(150,126,92,.3))}
 body.inner{background:var(--ground);--ink:var(--paper);--soft:var(--paper-80);--muted:var(--paper-60);--faint:var(--paper-60)}
 /* inner pages flow normally: the masthead sits near the top, and the page grows with whatever hangs from it */
 body.inner .stage{padding-top:7.6rem}
@@ -71,10 +78,10 @@ nav a:hover,nav a:focus-visible{color:var(--paper);outline:none}
 nav a:hover::after,nav a:focus-visible::after{right:0}
 nav a[aria-current="page"]{color:var(--paper)}
 nav a[aria-current="page"]::after{right:0;background:var(--hair)}
-.bio{margin-top:1.8rem;font-family:var(--serif);font-size:1.4rem;line-height:1.38;color:rgba(247,244,238,.94)}
+.bio{margin-top:1.8rem;font-family:var(--serif);font-size:1.4rem;line-height:1.38;color:rgba(247,244,238,.96);text-shadow:0 1px 12px rgba(0,0,0,.28)}
 .bio a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .25s ease}
 .bio a:hover,.bio a:focus-visible{border-bottom-color:var(--paper);outline:none}
-.bio2{margin-top:1rem;color:rgba(247,244,238,.86)}
+.bio2{margin-top:1rem;color:rgba(247,244,238,.9)}
 /* "Email" whispers the address on hover */
 .email-hint{position:relative}
 .email-hint .eh-tip{position:absolute;left:50%;bottom:calc(100% + .15rem);transform:translate(-50%,3px);white-space:nowrap;
@@ -158,5 +165,6 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
 }
 @media (prefers-reduced-motion:reduce){
   .scene,.loupe,.horizon,.name,nav,.bio,.links,.portrait,.list,.foot{animation:none;opacity:1;transform:none}
+  body.landing .scene{opacity:.6}
   nav a::after{transition:none}
 }
