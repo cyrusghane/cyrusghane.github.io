@@ -14,12 +14,12 @@
     W=IW*s; H=IH*s; ox=(vw-W)/2; oy=(vh-H)*PY;
     var isInner=document.body.classList.contains('inner');
     var y=Math.round(oy+HZ*H);               /* where the painting's horizon falls on this screen */
-    if(!isInner){ horizon.style.top=y+'px'; cluster.style.top=y+'px'; }   /* landing only: inner pages keep their masthead near the top in CSS */
+    if(!isInner){ var pin=vw>=720; horizon.style.top=pin?y+'px':''; cluster.style.top=pin?y+'px':''; }   /* phones flow instead (see CSS) */   /* landing only: inner pages keep their masthead near the top in CSS */
     if(!loupe) return;
     var S=loupe.offsetWidth; half=S/2; inner=S-2;
     glass.style.backgroundSize=(W*Z)+'px '+(H*Z)+'px';
     rest.x=ox+0.66*W; rest.y=oy+0.70*H;    /* the loupe rests on the river bend */
-    if(vw<720){ rest.x=vw*0.62; rest.y=y-0.22*vh; }   /* phones: the words fill the land, so rest in the sky */
+    if(vw<720){ rest.x=vw*0.62; rest.y=y-0.32*vh; }   /* phones: the words fill the land, so rest higher in the sky, clear of the photo */
     rest.x=Math.min(Math.max(rest.x,half+12),vw-half-12);
     rest.y=Math.min(Math.max(rest.y,half+12),vh-half-12);
   }

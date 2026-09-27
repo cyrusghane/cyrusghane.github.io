@@ -151,6 +151,12 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
   .links{left:var(--gutter);right:auto;bottom:1.4rem}
   .loupe{width:142px;height:142px}
   body.inner .stage{padding-top:6.4rem}
+  /* phones: the landing flows and scrolls like an inner page; the rule sits where the painting's horizon falls */
+  body.landing{overflow:auto;overflow-x:hidden}
+  body.landing .stage{height:auto;min-height:100vh;min-height:100svh;padding-top:54.5vh;padding-top:54.5svh;padding-bottom:1.4rem}
+  body.landing .horizon{position:relative;top:auto}
+  body.landing .cluster{position:relative;top:auto;left:auto;margin-left:var(--gutter);padding-bottom:0}
+  body.landing .links{position:relative;bottom:auto;left:auto;margin:2rem 0 0 var(--gutter)}
   .list{margin-top:1.6rem}
   .work li{grid-template-columns:1fr;gap:.45rem;padding:1.3rem 0}
   .work-title,.post-link{font-size:1.38rem}
