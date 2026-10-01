@@ -55,6 +55,15 @@ body.inner .veil{background:
 @keyframes loupeIn{to{opacity:1}}
 .loupe .glass{position:absolute;inset:0;background:url("/assets/oxbow.jpg?v=4") no-repeat 0 0}
 
+/* ---------- the strip: today's date and a ticking clock, across the top of the landing ---------- */
+.strip{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:baseline;
+  padding:1.5rem var(--gutter);font-family:var(--serif);font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-80);
+  opacity:0;animation:stripIn .9s ease .55s forwards}
+@keyframes stripIn{to{opacity:1}}
+.strip .clock{position:absolute;left:50%;transform:translateX(-50%);letter-spacing:.06em;color:var(--paper)}
+.clock .d{display:inline-block;width:.6em;text-align:center}
+.clock .c{display:inline-block;width:.34em;text-align:center;opacity:.7}
+
 /* ---------- the first screen: the horizon, extended into a rule; the name rests on it ---------- */
 .stage{position:relative;z-index:4;min-height:100vh;min-height:100svh}
 body.landing .stage{height:100vh;height:100svh}
@@ -151,6 +160,8 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
   .links{left:var(--gutter);right:auto;bottom:1.4rem}
   .loupe{width:142px;height:142px}
   body.inner .stage{padding-top:6.4rem}
+  .strip{padding:1.1rem var(--gutter);font-size:.78rem}
+  .strip .clock{position:static;transform:none}
   /* phones: the landing flows and scrolls like an inner page; the rule sits where the painting's horizon falls */
   body.landing{overflow:auto;overflow-x:hidden}
   body.landing .stage{height:auto;min-height:100vh;min-height:100svh;padding-top:54.5vh;padding-top:54.5svh;padding-bottom:1.4rem}
@@ -174,4 +185,5 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
   .scene,.loupe,.horizon,.name,nav,.bio,.links,.portrait,.list,.foot{animation:none;opacity:1;transform:none}
   body.landing .scene{opacity:.6}
   nav a::after{transition:none}
+  .strip{animation:none;opacity:1}
 }
