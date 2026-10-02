@@ -178,7 +178,8 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
 @media (hover:none) and (max-height:500px){
   .loupe{display:none}   /* a phone held sideways */
 }
-@media (max-height:780px){
+/* short windows — and narrow ones, where the bio wraps onto more lines — take the smaller landing type so the words still fit */
+@media (max-height:780px), (min-width:721px) and (max-width:900px) and (max-height:920px){
   body.landing .bio{font-size:1.4rem;margin-top:1.4rem}
   body.landing .bio2{margin-top:.8rem}
   body.landing .portrait{height:112px}
