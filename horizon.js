@@ -1,6 +1,5 @@
-/* horizon — sets the rule and the words on the landing, and drives the loupe where there is one */
+/* horizon — drives the loupe on the landing (the clock is below) */
 (function(){
-  var horizon=document.querySelector('.horizon'), cluster=document.querySelector('.cluster');
   var loupe=document.querySelector('.loupe'), glass=loupe&&loupe.querySelector('.glass');
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var coarse=matchMedia('(hover: none)').matches;
@@ -12,19 +11,24 @@
     vw=innerWidth; vh=innerHeight;
     var s=Math.max(vw/IW, vh/IH);          /* background-size: cover */
     W=IW*s; H=IH*s; ox=(vw-W)/2; oy=(vh-H)*PY;
-    var isInner=document.body.classList.contains('inner');
-    if(!isInner){ var pin=vw>720, yr=Math.round(0.44*vh); horizon.style.top=pin?yr+'px':''; cluster.style.top=pin?yr+'px':''; }   /* the rule sits at 44% of the screen; phones flow instead (see CSS) */   /* landing only: inner pages keep their masthead near the top in CSS */
     if(!loupe) return;
-    var S=loupe.offsetWidth; half=S/2; inner=S-2;
-    if(!S) return;                         /* phones: the CSS hides the loupe, so its width reads 0 and there is nothing to place */
+    var S=202, m=Math.max(40,vw*0.07), id=document.querySelector('.id'), ph=document.querySelector('.portrait');
+    rest.x=vw-S/2-m; rest.y=Math.max(vh*0.21,84+S/2);   /* the loupe rests in the sky: right of the column, below the strip */
+    if(id){                                /* …but never over the name and the portrait: where the screen is narrow it shrinks to fit above them */
+      var top=id.getBoundingClientRect().top+scrollY, right=(ph||id).getBoundingClientRect().right;
+      if(!(rest.x-S/2>right+16 || rest.y+S/2<top-8)){ S=Math.min(202,top-8-84); rest.x=vw-S/2-m; rest.y=84+S/2; }
+    }
+    loupe.style.display=S>=110?'':'none'; loupe.style.width=loupe.style.height=S+'px';
+    S=loupe.offsetWidth; half=S/2; inner=S-2;
+    if(!S) return;                         /* phones, or no room: the loupe is hidden, so its width reads 0 and there is nothing to place */
     glass.style.backgroundSize=(W*Z)+'px '+(H*Z)+'px';
-    rest.x=ox+0.80*W; rest.y=oy+0.27*H;    /* the loupe rests in the sky, clear of the words */
     rest.x=Math.min(Math.max(rest.x,half+12),vw-half-12);
     rest.y=Math.min(Math.max(rest.y,half+12),vh-half-12);
-    if(!on){ on=true; cx=tx=rest.x; cy=ty=rest.y; requestAnimationFrame(frame); }   /* start the loupe — or restart it when a phone-sized window grows */
+    if(!on){ on=true; cx=tx=rest.x; cy=ty=rest.y; loupe.style.transform='translate3d('+(cx-half)+'px,'+(cy-half)+'px,0)'; requestAnimationFrame(frame); }   /* start the loupe — or restart it when a phone-sized window grows */
   }
   layout();
   addEventListener('resize',layout);
+  if(document.fonts) document.fonts.ready.then(layout);   /* the name grows when its font arrives, so place the loupe again */
   if(!loupe) return;
 
   addEventListener('pointermove',function(e){ if(e.pointerType==='touch') return; tx=e.clientX; ty=e.clientY; });
@@ -32,7 +36,7 @@
 
   function frame(now){
     if(!half){ on=false; return; }         /* the loupe is hidden: stop here until layout() starts it again */
-    if(coarse && !reduce){ var t=(now-t0)/1000; tx=rest.x+vw*0.05*Math.sin(t*0.13); ty=rest.y+vh*0.04*Math.sin(t*0.19+1.3); }
+    if(coarse && !reduce){ var t=(now-t0)/1000; tx=rest.x+vw*0.03*Math.sin(t*0.13); ty=rest.y+vh*0.03*Math.sin(t*0.19+1.3); }
     var k=reduce?1:0.11; cx+=(tx-cx)*k; cy+=(ty-cy)*k;
     loupe.style.transform='translate3d('+(cx-half)+'px,'+(cy-half)+'px,0)';
     var px=cx-ox, py=cy-oy;                /* the painting-pixel under the loupe's centre */
