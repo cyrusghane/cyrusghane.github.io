@@ -4,7 +4,7 @@
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var coarse=matchMedia('(hover: none)').matches;
   var PY=0.44, Z=1.3;             /* .scene's "center 44%"; Z = how much closer the loupe looks */
-  var IW=1495, IH=1014;           /* assets/oxbow.jpg */
+  var IW=1495, IH=1014;           /* assets/oxbow-mono.jpg */
   var vw,vh,W,H,ox,oy,half,inner, rest={x:0,y:0}, cx=0,cy=0,tx=0,ty=0, t0=performance.now(), on=false;
 
   function layout(){
