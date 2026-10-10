@@ -5,7 +5,8 @@
   var coarse=matchMedia('(hover: none)').matches;
   var PY=0.44, Z=1.3;             /* .scene's "center 44%"; Z = how much closer the loupe looks */
   var IW=1495, IH=1014;           /* assets/oxbow-mono.jpg */
-  var vw,vh,W,H,ox,oy,half,inner, rest={x:0,y:0}, cx=0,cy=0,tx=0,ty=0, t0=performance.now(), on=false;
+  var vw,vh,W,H,ox,oy,half,inner, rest={x:0,y:0}, cx=0,cy=0,tx=0,ty=0, t0=performance.now(), last=t0, on=false;
+  var TAU=40;                     /* ms the loupe takes to close most of the gap to the cursor — smaller is tighter */
 
   function layout(){
     vw=innerWidth; vh=innerHeight;
@@ -36,8 +37,9 @@
 
   function frame(now){
     if(!half){ on=false; return; }         /* the loupe is hidden: stop here until layout() starts it again */
+    var dt=Math.min(now-last,50); last=now;   /* clamped: a tab coming back from the background should glide, not jump */
     if(coarse && !reduce){ var t=(now-t0)/1000; tx=rest.x+vw*0.03*Math.sin(t*0.13); ty=rest.y+vh*0.03*Math.sin(t*0.19+1.3); }
-    var k=reduce?1:0.11; cx+=(tx-cx)*k; cy+=(ty-cy)*k;
+    var k=reduce?1:1-Math.exp(-dt/TAU); cx+=(tx-cx)*k; cy+=(ty-cy)*k;   /* the same feel at 60 and 120 Hz */
     loupe.style.transform='translate3d('+(cx-half)+'px,'+(cy-half)+'px,0)';
     var px=cx-ox, py=cy-oy;                /* the painting-pixel under the loupe's centre */
     glass.style.backgroundPosition=(inner/2-px*Z)+'px '+(inner/2-py*Z)+'px';
