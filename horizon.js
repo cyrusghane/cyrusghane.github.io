@@ -7,19 +7,20 @@
   var IW=1495, IH=1014;           /* assets/oxbow-mono.jpg */
   var vw,vh,W,H,ox,oy,half,inner, rest={x:0,y:0}, cx=0,cy=0,tx=0,ty=0, t0=performance.now(), last=t0, on=false;
   var TAU=40;                     /* ms the loupe takes to close most of the gap to the cursor — smaller is tighter */
+  var SIZE=150;                   /* px: the loupe's side (also in .loupe in horizon.css) */
 
   function layout(){
     vw=innerWidth; vh=innerHeight;
     var s=Math.max(vw/IW, vh/IH);          /* background-size: cover */
     W=IW*s; H=IH*s; ox=(vw-W)/2; oy=(vh-H)*PY;
     if(!loupe) return;
-    var S=202, m=Math.max(40,vw*0.07), id=document.querySelector('.id'), ph=document.querySelector('.portrait');
+    var S=SIZE, m=Math.max(40,vw*0.07), id=document.querySelector('.id'), ph=document.querySelector('.portrait');
     rest.x=vw-S/2-m; rest.y=Math.max(vh*0.21,84+S/2);   /* the loupe rests in the sky: right of the column, below the strip */
     if(id){                                /* …but never over the name and the portrait: where the screen is narrow it shrinks to fit above them */
       var top=id.getBoundingClientRect().top+scrollY, right=(ph||id).getBoundingClientRect().right;
-      if(!(rest.x-S/2>right+16 || rest.y+S/2<top-8)){ S=Math.min(202,top-8-84); rest.x=vw-S/2-m; rest.y=84+S/2; }
+      if(!(rest.x-S/2>right+16 || rest.y+S/2<top-8)){ S=Math.min(SIZE,top-8-84); rest.x=vw-S/2-m; rest.y=84+S/2; }
     }
-    loupe.style.display=S>=110?'':'none'; loupe.style.width=loupe.style.height=S+'px';
+    loupe.style.display=S>=90?'':'none'; loupe.style.width=loupe.style.height=S+'px';
     S=loupe.offsetWidth; half=S/2; inner=S-2;
     if(!S) return;                         /* phones, or no room: the loupe is hidden, so its width reads 0 and there is nothing to place */
     glass.style.backgroundSize=(W*Z)+'px '+(H*Z)+'px';
