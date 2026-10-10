@@ -1,24 +1,25 @@
-/* v2/horizon — the Oxbow in black and white, faded to a pale print; its horizon, and the words that hang from it */
+/* v2/horizon — the Oxbow in black and white, its horizon, and the words that hang from it */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --serif:"Benne","EB Garamond",Georgia,"Times New Roman",serif;
   --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  /* ink on the pale field */
-  --ink:#1c1c1c; --ink-80:rgba(28,28,28,.8); --ink-60:rgba(28,28,28,.6); --hair:rgba(28,28,28,.5);
-  --ground:#ebebeb;                 /* what the painting dissolves into below the first screen */
-  --hair-soft:rgba(28,28,28,.16);
+  /* words on the painting */
+  --paper:#f7f4ee; --paper-80:rgba(247,244,238,.8); --paper-60:rgba(247,244,238,.6); --hair:rgba(247,244,238,.62);
+  --ground:#303030;                 /* what the painting dissolves into below the first screen */
+  --hair-soft:rgba(247,244,238,.18);
+  --sage:#b3c4b0; --rose:#d8a69d;    /* accents that read on the dark field */
   --gutter:2.6rem;
 }
 html{font-size:17px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-body{font-family:var(--sans);background:#ebebeb;color:var(--ink);min-height:100vh;min-height:100svh;overflow-x:hidden}
-body.landing{overflow-x:hidden;background:#ededed}
-/* the painting, in black and white, faded into the pale field like an old print */
-body.landing .scene{filter:brightness(1.08) contrast(.8);animation-name:sceneInWashed}
-@keyframes sceneInWashed{to{opacity:.5}}
+body{font-family:var(--sans);background:#3c3c3c;color:var(--paper);min-height:100vh;min-height:100svh;overflow-x:hidden}
+body.landing{overflow-x:hidden;background:#646464}
+/* the painting, in black and white, washed behind a grey screen */
+body.landing .scene{filter:brightness(1.06) contrast(.82);animation-name:sceneInWashed}
+@keyframes sceneInWashed{to{opacity:.6}}
 body.landing .veil{background:
-    radial-gradient(90% 70% at 50% 52%,rgba(255,255,255,.34) 0%,rgba(255,255,255,.12) 60%,rgba(255,255,255,0) 100%),   /* a little paler behind the column */
-    linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.18))}
-body.inner{background:var(--ground)}
+    radial-gradient(90% 70% at 50% 52%,rgba(16,16,16,.34) 0%,rgba(16,16,16,.12) 60%,rgba(16,16,16,0) 100%),   /* a little darker behind the column */
+    linear-gradient(rgba(128,128,128,.3),rgba(128,128,128,.3))}
+body.inner{background:var(--ground);--ink:var(--paper);--soft:var(--paper-80);--muted:var(--paper-60);--faint:var(--paper-60)}
 /* inner pages flow normally: the masthead sits near the top, and the page grows with whatever hangs from it */
 body.inner .stage{padding-top:10rem}
 body.inner .horizon{position:relative;top:auto}
@@ -28,10 +29,9 @@ body.inner .scene,body.inner .veil{position:absolute;inset:auto;top:0;left:0;rig
 body.inner .scene{overflow:hidden;background:none;filter:none}
 body.inner .scene::before{content:"";position:absolute;inset:-40px;
   background:url("/assets/oxbow-mono.jpg?v=1") center 44%/cover no-repeat;
-  filter:blur(20px) brightness(1.12) contrast(.85)}
+  filter:blur(20px) brightness(.74) contrast(.96)}
 body.inner .veil{background:
-    linear-gradient(0deg,var(--ground) 0%,rgba(235,235,235,.86) 12%,rgba(235,235,235,0) 44%),
-    linear-gradient(rgba(255,255,255,.38),rgba(255,255,255,.38))}
+    linear-gradient(0deg,var(--ground) 0%,rgba(48,48,48,.86) 12%,rgba(48,48,48,0) 44%)}
 
 /* ---------- the painting, veiled in haze ---------- */
 .scene{position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -41,23 +41,23 @@ body.inner .veil{background:
 @keyframes sceneIn{to{opacity:1}}
 .veil{position:fixed;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 28%),
-    linear-gradient(0deg,rgba(255,255,255,.36) 0%,rgba(255,255,255,.1) 38%,rgba(255,255,255,0) 58%),
-    radial-gradient(115% 85% at 50% 50%,rgba(255,255,255,0) 62%,rgba(255,255,255,.14) 100%)}
+    linear-gradient(180deg,rgba(10,12,14,.16) 0%,rgba(10,12,14,0) 28%),
+    linear-gradient(0deg,rgba(10,12,14,.36) 0%,rgba(10,12,14,.1) 38%,rgba(10,12,14,0) 58%),
+    radial-gradient(115% 85% at 50% 50%,rgba(0,0,0,0) 62%,rgba(0,0,0,.14) 100%)}
 
 /* ---------- the loupe — a clear window in the haze, a little closer (landing only) ---------- */
 .loupe{position:fixed;left:0;top:0;z-index:3;width:202px;height:202px;pointer-events:none;
-  border:1px solid rgba(28,28,28,.7);box-shadow:0 0 0 1px rgba(255,255,255,.35);
+  border:1px solid rgba(247,244,238,.92);box-shadow:0 0 0 1px rgba(0,0,0,.12);
   opacity:0;animation:loupeIn .7s ease .3s forwards;will-change:transform}
 @keyframes loupeIn{to{opacity:1}}
 .loupe .glass{position:absolute;inset:0;background:url("/assets/oxbow-mono.jpg?v=1") no-repeat 0 0}
 
 /* ---------- the strip: today's date and a ticking clock, across the top of the landing ---------- */
 .strip{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:baseline;
-  padding:1.5rem var(--gutter);font-family:var(--serif);font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-80);
+  padding:1.5rem var(--gutter);font-family:var(--serif);font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-80);
   opacity:0;animation:stripIn .9s ease .55s forwards}
 @keyframes stripIn{to{opacity:1}}
-.strip .clock{position:absolute;left:50%;transform:translateX(-50%);letter-spacing:.06em;color:var(--ink)}
+.strip .clock{position:absolute;left:50%;transform:translateX(-50%);letter-spacing:.06em;color:var(--paper)}
 .clock .d{display:inline-block;width:.6em;text-align:center}
 .clock .c{display:inline-block;width:.34em;text-align:center;opacity:.7}
 
@@ -76,32 +76,32 @@ body.landing .name{line-height:1.2;padding-bottom:0}
 body.inner .cluster{width:min(62rem,calc(100vw - 2*var(--gutter)))}
 .shelf{position:absolute;left:0;bottom:100%;display:flex;align-items:flex-end;gap:3.8rem}
 /* the portrait stands beside the name, on the same line */
-.portrait{height:172px;width:auto;display:block;margin-bottom:.1em;filter:drop-shadow(0 8px 18px rgba(0,0,0,.16))}
+.portrait{height:172px;width:auto;display:block;margin-bottom:.1em;filter:drop-shadow(0 10px 22px rgba(0,0,0,.28))}
 body.inner .portrait{height:144px}
 .name{display:block;padding-bottom:.08em;line-height:1.35;white-space:nowrap;
   font-family:"EB Garamond",Georgia,"Times New Roman",serif;font-weight:600;font-size:clamp(3.2rem,7.4vw,6.6rem);letter-spacing:-.018em;
-  color:var(--ink);text-decoration:none;text-shadow:0 1px 16px rgba(255,255,255,.45)}
+  color:var(--paper);text-decoration:none;text-shadow:0 1px 16px rgba(0,0,0,.28)}
 nav{display:flex;flex-wrap:wrap;gap:.3rem 2rem;padding-top:1.2rem;font-family:var(--serif);font-size:1.18rem;font-weight:400;letter-spacing:.005em}
-nav a{position:relative;color:var(--ink-80);text-decoration:none;padding-bottom:1px;transition:color .25s ease}
-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1px;background:var(--ink);
+nav a{position:relative;color:var(--paper-80);text-decoration:none;padding-bottom:1px;transition:color .25s ease}
+nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1px;background:var(--paper);
   transition:right .3s cubic-bezier(.22,.61,.36,1)}
-nav a:hover,nav a:focus-visible{color:var(--ink);outline:none}
+nav a:hover,nav a:focus-visible{color:var(--paper);outline:none}
 nav a:hover::after,nav a:focus-visible::after{right:0}
-nav a[aria-current="page"]{color:var(--ink)}
+nav a[aria-current="page"]{color:var(--paper)}
 nav a[aria-current="page"]::after{right:0;background:var(--hair)}
-.bio{margin-top:1.7rem;font-family:var(--serif);font-size:1.28rem;line-height:1.45;color:var(--ink);text-shadow:0 1px 14px rgba(255,255,255,.55)}
+.bio{margin-top:1.7rem;font-family:var(--serif);font-size:1.28rem;line-height:1.45;color:#ffffff;text-shadow:0 1px 14px rgba(0,0,0,.42)}
 .bio a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .25s ease}
-.bio a:hover,.bio a:focus-visible{border-bottom-color:var(--ink);outline:none}
-.bio2{margin-top:.9rem;color:var(--ink)}
+.bio a:hover,.bio a:focus-visible{border-bottom-color:var(--paper);outline:none}
+.bio2{margin-top:.9rem;color:#ffffff}
 /* "Email" whispers the address on hover */
 .email-hint{position:relative}
 .email-hint .eh-tip{position:absolute;left:50%;bottom:calc(100% + .15rem);transform:translate(-50%,3px);white-space:nowrap;
-  font-family:var(--serif);font-style:normal;font-size:.66rem;font-weight:450;letter-spacing:.05em;color:#f4f4f4;
-  background:rgba(22,22,22,.88);border-radius:2px;padding:.22rem .5rem;opacity:0;pointer-events:none;transition:opacity .28s ease,transform .28s ease}
+  font-family:var(--serif);font-style:normal;font-size:.66rem;font-weight:450;letter-spacing:.05em;color:var(--paper);
+  background:rgba(22,22,22,.85);border-radius:2px;padding:.22rem .5rem;opacity:0;pointer-events:none;transition:opacity .28s ease,transform .28s ease}
 .email-hint:hover .eh-tip,.email-hint:focus-visible .eh-tip{opacity:1;transform:translate(-50%,0)}
-.links{margin-top:2.2rem;font-family:var(--serif);font-size:1.05rem;letter-spacing:.01em;color:var(--ink-80)}
-.links a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:border-color .25s ease}
-.links a:hover,.links a:focus-visible{border-bottom-color:var(--ink);outline:none}
+.links{margin-top:2.2rem;font-family:var(--serif);font-size:1.05rem;letter-spacing:.01em;color:var(--paper-80)}
+.links a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:border-color .25s ease}
+.links a:hover,.links a:focus-visible{border-bottom-color:var(--paper);outline:none}
 .links .sep{margin:0 .6rem}
 
 /* ---------- the lists: hang from the nav, in the same white as the bio ---------- */
@@ -110,36 +110,36 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
 .list li:first-child{border-top:none}
 .work li{display:grid;grid-template-columns:1fr auto;gap:0 2rem;padding:2rem 0;align-items:start}
 .work li:first-child{padding-top:.1rem}
-.work-title{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.22;color:var(--ink)}
-.work-org{margin-top:.55rem;font-family:var(--serif);font-size:.9rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60)}
-.work-desc{font-family:var(--serif);margin-top:.85rem;font-size:1.3rem;line-height:1.5;color:var(--ink-80);max-width:58rem}
-.work-links{margin-top:.95rem;font-family:var(--serif);font-size:1rem;letter-spacing:.01em;color:var(--ink-60)}
-.work-links a{color:var(--ink-80);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:color .2s ease,border-color .2s ease}
-.work-links a:hover,.work-links a:focus-visible{color:var(--ink);border-bottom-color:var(--ink);outline:none}
+.work-title{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.22;color:var(--paper)}
+.work-org{margin-top:.55rem;font-family:var(--serif);font-size:.9rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--paper-60)}
+.work-desc{font-family:var(--serif);margin-top:.85rem;font-size:1.3rem;line-height:1.5;color:var(--paper-80);max-width:58rem}
+.work-links{margin-top:.95rem;font-family:var(--serif);font-size:1rem;letter-spacing:.01em;color:var(--paper-60)}
+.work-links a{color:var(--paper-80);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:color .2s ease,border-color .2s ease}
+.work-links a:hover,.work-links a:focus-visible{color:var(--paper);border-bottom-color:var(--paper);outline:none}
 .work-links .sep{margin:0 .55rem}
-.work-year{font-family:var(--serif);font-size:1.02rem;color:var(--ink-80);white-space:nowrap;padding-top:.45rem;font-variant-numeric:tabular-nums}
+.work-year{font-family:var(--serif);font-size:1.02rem;color:var(--paper-80);white-space:nowrap;padding-top:.45rem;font-variant-numeric:tabular-nums}
 .posts li{display:flex;justify-content:space-between;align-items:baseline;gap:2rem;padding:1.8rem 0}
 .posts li:first-child{padding-top:.1rem}
-.post-link{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.22;letter-spacing:-.005em;color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s ease}
+.post-link{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.22;letter-spacing:-.005em;color:var(--paper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s ease}
 .post-link:hover,.post-link:focus-visible{border-bottom-color:var(--hair);outline:none}
-.post-when{font-family:var(--serif);font-size:1.15rem;color:var(--ink-80);white-space:nowrap;font-variant-numeric:lining-nums}
-.post-desc{font-family:var(--serif);font-size:1.26rem;line-height:1.45;color:var(--ink-80);margin-top:.45rem;max-width:56rem}
+.post-when{font-family:var(--serif);font-size:1.15rem;color:var(--paper-80);white-space:nowrap;font-variant-numeric:lining-nums}
+.post-desc{font-family:var(--serif);font-size:1.26rem;line-height:1.45;color:var(--paper-80);margin-top:.45rem;max-width:56rem}
 
 /* ---------- a post: the same white, set for reading ---------- */
-.post{margin-top:2.1rem;font-family:var(--serif);color:var(--ink-80)}
-.post-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,3.4vw,1.9rem);line-height:1.15;letter-spacing:-.01em;color:var(--ink);margin:0}
-.post p.post-date{font-family:var(--sans);font-size:.78rem;letter-spacing:.03em;color:var(--ink-80);margin:.85rem 0 2.3rem}
-.post p{font-size:1.14rem;line-height:1.6;color:var(--ink-80);margin:1.1rem 0}
-.post a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .22s ease}
-.post a:hover,.post a:focus-visible{border-bottom-color:var(--ink);outline:none}
+.post{margin-top:2.1rem;font-family:var(--serif);color:var(--paper-80)}
+.post-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,3.4vw,1.9rem);line-height:1.15;letter-spacing:-.01em;color:var(--paper);margin:0}
+.post p.post-date{font-family:var(--sans);font-size:.78rem;letter-spacing:.03em;color:var(--paper-80);margin:.85rem 0 2.3rem}
+.post p{font-size:1.14rem;line-height:1.6;color:var(--paper-80);margin:1.1rem 0}
+.post a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .22s ease}
+.post a:hover,.post a:focus-visible{border-bottom-color:var(--paper);outline:none}
 .post em{font-style:italic}
-.post h2{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.2;color:var(--ink);margin:2.9rem 0 .2rem}
-.post h3{font-family:var(--serif);font-weight:500;font-size:1.28rem;color:var(--ink-80);margin:2.4rem 0 .3rem}
+.post h2{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.2;color:var(--paper);margin:2.9rem 0 .2rem}
+.post h3{font-family:var(--serif);font-weight:500;font-size:1.28rem;color:var(--paper-80);margin:2.4rem 0 .3rem}
 
 /* the foot of an inner page, on the ground */
-.foot{position:relative;z-index:4;padding:0 var(--gutter) 2.4rem;font-family:var(--serif);font-size:1.05rem;letter-spacing:.01em;color:var(--ink-80)}
-.foot a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:border-color .25s ease}
-.foot a:hover,.foot a:focus-visible{border-bottom-color:var(--ink);outline:none}
+.foot{position:relative;z-index:4;padding:0 var(--gutter) 2.4rem;font-family:var(--serif);font-size:1.05rem;letter-spacing:.01em;color:var(--paper-80)}
+.foot a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:border-color .25s ease}
+.foot a:hover,.foot a:focus-visible{border-bottom-color:var(--paper);outline:none}
 .foot .sep{margin:0 .6rem}
 
 /* ---------- entrance ---------- */
@@ -185,7 +185,7 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
 }
 @media (prefers-reduced-motion:reduce){
   .scene,.loupe,.horizon,.name,nav,.bio,.links,.portrait,.list,.foot{animation:none;opacity:1;transform:none}
-  body.landing .scene{opacity:.5}
+  body.landing .scene{opacity:.6}
   nav a::after{transition:none}
   .strip{animation:none;opacity:1}
 }
