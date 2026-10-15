@@ -46,7 +46,7 @@ body.inner .veil{background:
     radial-gradient(115% 85% at 50% 50%,rgba(0,0,0,0) 62%,rgba(0,0,0,.14) 100%)}
 
 /* ---------- the loupe — a clear window in the haze, a little closer and in colour (landing only) ---------- */
-.loupe{position:fixed;left:0;top:0;z-index:3;width:150px;height:150px;pointer-events:none;
+.loupe{position:fixed;left:0;top:0;z-index:3;width:120px;height:120px;pointer-events:none;
   border:1px solid rgba(247,244,238,.92);box-shadow:0 0 0 1px rgba(0,0,0,.12);
   opacity:0;animation:loupeIn .7s ease .3s forwards;will-change:transform}
 @keyframes loupeIn{to{opacity:1}}
