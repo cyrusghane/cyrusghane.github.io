@@ -45,13 +45,6 @@ body.inner .veil{background:
     linear-gradient(0deg,rgba(10,12,14,.36) 0%,rgba(10,12,14,.1) 38%,rgba(10,12,14,0) 58%),
     radial-gradient(115% 85% at 50% 50%,rgba(0,0,0,0) 62%,rgba(0,0,0,.14) 100%)}
 
-/* ---------- the loupe — a clear window in the haze, a little closer and in colour (landing only) ---------- */
-.loupe{position:fixed;left:0;top:0;z-index:3;width:120px;height:120px;pointer-events:none;
-  border:1px solid rgba(247,244,238,.92);box-shadow:0 0 0 1px rgba(0,0,0,.12);
-  opacity:0;animation:loupeIn .7s ease .3s forwards;will-change:transform}
-@keyframes loupeIn{to{opacity:1}}
-.loupe .glass{position:absolute;inset:0;background:url("/assets/oxbow.jpg?v=4") no-repeat 0 0}   /* the painting's own colour shows through the glass */
-
 /* ---------- the strip: today's date and a ticking clock, across the top of the landing ---------- */
 .strip{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:baseline;
   padding:1.5rem var(--gutter);font-family:var(--serif);font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-80);
@@ -160,7 +153,6 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
   .shelf,.id{gap:1rem}
   .portrait{height:118px}
   body.inner .portrait{height:102px}
-  .loupe{display:none}   /* phones: no loupe — there is no cursor for it to follow */
   body.inner .stage{padding-top:6.4rem}
   .strip{padding:1.1rem var(--gutter);font-size:.78rem}
   .strip .clock{position:static;transform:none}
@@ -175,9 +167,6 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
   .work-year{padding-top:0}
   .posts li{flex-direction:column;gap:.3rem;align-items:flex-start}
 }
-@media (hover:none) and (max-height:500px){
-  .loupe{display:none}   /* a phone held sideways */
-}
 /* short windows — and narrow ones, where the bio wraps onto more lines — take the smaller landing type so the words still fit */
 @media (min-width:721px) and (max-height:780px), (min-width:721px) and (max-width:900px) and (max-height:920px){
   body.landing .bio{font-size:1.12rem;margin-top:1.3rem}
@@ -186,7 +175,7 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
   body.landing .name{font-size:clamp(3rem,6.4vw,5.6rem)}
 }
 @media (prefers-reduced-motion:reduce){
-  .scene,.loupe,.horizon,.name,nav,.bio,.links,.portrait,.list,.foot{animation:none;opacity:1;transform:none}
+  .scene,.horizon,.name,nav,.bio,.links,.portrait,.list,.foot{animation:none;opacity:1;transform:none}
   body.landing .scene{opacity:.6}
   nav a::after{transition:none}
   .strip{animation:none;opacity:1}
