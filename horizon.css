@@ -13,9 +13,9 @@
 html{font-size:17px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body{font-family:var(--sans);background:#3c3c3c;color:var(--paper);min-height:100vh;min-height:100svh;overflow-x:hidden}
 body.landing{overflow-x:hidden;background:#646464}
-/* the painting, in black and white, washed behind a grey screen */
-body.landing .scene{filter:brightness(1.06) contrast(.82);animation-name:sceneInWashed}
-@keyframes sceneInWashed{to{opacity:.6}}
+/* the painting in black and white, as soft dots that blend into one another, flattened toward a single grey */
+body.landing .scene{filter:none;animation-name:sceneInWashed}
+@keyframes sceneInWashed{to{opacity:.9}}
 body.landing .veil{background:
     radial-gradient(90% 70% at 50% 52%,rgba(16,16,16,.34) 0%,rgba(16,16,16,.12) 60%,rgba(16,16,16,0) 100%),   /* a little darker behind the column */
     linear-gradient(rgba(128,128,128,.3),rgba(128,128,128,.3))}
@@ -35,7 +35,7 @@ body.inner .veil{background:
 
 /* ---------- the painting, veiled in haze ---------- */
 .scene{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:url("/assets/oxbow-mono.jpg?v=1") center 44%/cover no-repeat;
+  background:url("/assets/oxbow-dots.jpg?v=5") center 44%/cover no-repeat;
   filter:brightness(.97) contrast(.96);
   opacity:0;animation:sceneIn 1.1s ease .02s forwards}
 @keyframes sceneIn{to{opacity:1}}
@@ -186,7 +186,7 @@ nav a[aria-current="page"]::after{right:0;background:var(--hair)}
 }
 @media (prefers-reduced-motion:reduce){
   .scene,.loupe,.horizon,.name,nav,.bio,.links,.portrait,.list,.foot{animation:none;opacity:1;transform:none}
-  body.landing .scene{opacity:.6}
+  body.landing .scene{opacity:.9}
   nav a::after{transition:none}
   .strip{animation:none;opacity:1}
 }
