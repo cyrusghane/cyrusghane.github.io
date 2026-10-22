@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Cyrus Ghane — blogs</title>
+<link>https://cyrusghane.com/writing/</link>
+<description>Writing by Cyrus Ghane — essays, primers, and a working canon.</description>
+<language>en</language>
+<atom:link href="https://cyrusghane.com/feed.xml" rel="self" type="application/rss+xml"/>
+<lastBuildDate>Thu, 22 Oct 2026 00:00:00 -0400</lastBuildDate>
+<item>
+<title>My Canon</title>
+<link>https://cyrusghane.com/canon/</link>
+<guid>https://cyrusghane.com/canon/</guid>
+<pubDate>Sun, 12 Jul 2026 00:00:00 -0400</pubDate>
+<description>A working list of formative essays and blogs that have shaped my values and thinking.</description>
+</item>
+<item>
+<title>Before agentic, there was physics-informed</title>
+<link>https://cyrusghane.com/physics-informed/</link>
+<guid>https://cyrusghane.com/physics-informed/</guid>
+<pubDate>Wed, 01 Jul 2026 00:00:00 -0400</pubDate>
+<description>A slightly meandering primer to physics-informed ML.</description>
+</item>
+</channel>
+</rss>

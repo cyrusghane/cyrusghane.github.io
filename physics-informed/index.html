@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZV7LSVQRZ"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -8,140 +10,35 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-7ZV7LSVQRZ');
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Before agentic, there was physics-informed — Cyrus Ghane</title>
 <meta name="description" content="Why a physics-informed lens can add enormous value to almost any computational field — with aging/longevity as a case study.">
-<meta name="theme-color" content="#f6f3ec">
+<meta name="theme-color" content="#faf8f3">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=10">
+<link rel="alternate" type="application/rss+xml" title="Cyrus Ghane — blogs" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,330..600;1,9..144,360..520&family=Inter:wght@400;450;500;600&display=swap">
-<link rel="stylesheet" href="/styles.css?v=14">
-<style>
-  /* extra palette vars the figure SVGs read */
-  :root{ --line-soft:rgba(31,29,22,0.06); --rose-fill:#b07a72; }
-
-  /* monochromatic background — hide the pond entirely (no drifting blobs);
-     a clean neutral paper with the site's faint grain remains */
-  #bg{ display:none; }
-  body{ background-color:#f2f1ed; }
-
-  /* masthead in EB Garamond — one serif across the whole site */
-  .site-name{ font-family:"EB Garamond",Georgia,serif; font-weight:500; }
-  /* masthead as on the landing: the name rests on a rule, the nav hangs beneath it */
-  header{ display:block; margin-bottom:2.6rem; }
-  .header-copy{ display:block; }
-  .site-name{ display:block; padding-bottom:.28rem; border-bottom:1px solid var(--line-strong); }
-  .header-copy nav{ margin-top:0; padding-top:1rem; }
-  .post{ border-top:none; padding-top:0; }
-
-  /* ---------- the post ---------- */
-  .post{ padding-top:2.2rem; border-top:1px solid var(--line);
-    font-family:"EB Garamond",Georgia,serif; }
-  .post-title{
-    font-family:"EB Garamond",Georgia,serif;font-weight:600;
-    font-size:clamp(1.45rem,3.7vw,1.78rem);line-height:1.1;letter-spacing:-.012em;
-    color:var(--ink);margin-bottom:0;
-  }
-  .post p.post-date{
-    font-size:0.98rem;
-    line-height:1.3;color:var(--muted);margin:0.7rem 0 2.4rem;
-  }
-  .post p{ font-size:1.14rem;line-height:1.58;color:#262420;margin:1.1rem 0; }
-  .post a{ color:var(--accent-deep);text-decoration:none;border-bottom:1px solid var(--line-strong);transition:color .22s,border-color .22s; }
-  .post a:hover,.post a:focus-visible{ color:var(--accent);border-bottom-color:var(--accent);outline:none; }
-  .post em{ font-style:italic; }
-
-  .post h2{
-    font-family:"EB Garamond",Georgia,serif;font-weight:500;
-    font-size:1.5rem;letter-spacing:0;color:var(--ink);
-    margin:2.9rem 0 .2rem;line-height:1.2;
-  }
-  .post h3{
-    font-family:"EB Garamond",Georgia,serif;font-size:1.3rem;font-weight:500;letter-spacing:0;text-transform:none;
-    color:var(--soft);margin:2.5rem 0 .3rem;
-  }
-
-  /* footnote marker — a typographic cross (dagger) */
-  .fnmark{ border:none;color:var(--accent);font-weight:600;font-size:.78em;line-height:0;
-    vertical-align:super;margin-left:2px;padding:0 1px;transition:color .15s,transform .15s;display:inline-block; }
-  a.fnmark:hover{ color:var(--ink);transform:translateY(-1px) rotate(8deg); }
-  .fnmark-foot{ font-size:.92em;vertical-align:baseline;margin-right:4px; }
-
-  /* numbered outlook */
-  ol.outlook{ margin:1.4rem 0;padding:0;list-style:none;counter-reset:item; }
-  ol.outlook>li{ position:relative;padding-left:1.9rem;margin:1.5rem 0;counter-increment:item;
-    color:#262420;font-size:1.14rem;line-height:1.58; }
-  ol.outlook>li::before{ content:counter(item);position:absolute;left:0;top:0;
-    width:1.5rem;text-align:left;
-    font-family:"EB Garamond",Georgia,serif;font-size:1.2rem;font-weight:500;
-    line-height:1.8rem;color:var(--accent);font-variant-numeric:tabular-nums; }
-  ol.outlook .item-label{ font-weight:600;color:var(--ink); }
-  ol.outlook>li p{ margin:.6rem 0 0; }
-
-  /* litmus bullet list */
-  ul.litmus{ margin:1.4rem 0;padding-left:1.3rem;list-style:none; }
-  ul.litmus>li{ position:relative;margin:1rem 0;font-weight:600;color:var(--ink);font-size:1.14rem;line-height:1.5; }
-  ul.litmus>li::before{ content:"";position:absolute;left:-1.05rem;top:.6rem;width:6px;height:6px;border-radius:50%;background:var(--accent); }
-  ul.litmus ul{ list-style:none;margin:.3rem 0 0;padding-left:1rem; }
-  ul.litmus ul li{ position:relative;font-weight:400;color:#3f3d36;font-size:1.02rem;line-height:1.55; }
-  ul.litmus ul li::before{ content:"";position:absolute;left:-0.95rem;top:.62rem;width:5px;height:5px;border-radius:50%;border:1.3px solid var(--accent);opacity:.65; }
-
-  /* figures */
-  .post figure{ margin:2.6rem 0; }
-  .fig-head{ display:flex;align-items:baseline;gap:.7rem;margin-bottom:.9rem; }
-  .fig-num{ font-family:var(--sans);font-size:.66rem;font-weight:600;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;white-space:nowrap;padding-top:.15rem; }
-  .fig-title{ font-family:"EB Garamond",Georgia,serif;font-weight:600;font-size:1.15rem;letter-spacing:-.005em;color:var(--ink);line-height:1.25;margin:0; }
-  .panel{ background:#fbf9f4;border:1px solid var(--line-strong);border-radius:12px;padding:1.7rem 1.4rem 1.3rem; }
-  figcaption{ font-size:.96rem;color:var(--muted);margin-top:.9rem;line-height:1.55; }
-  figcaption .src{ font-style:italic; }
-  .post svg{ display:block;width:100%;height:auto;overflow:visible; }
-  .tick{ font:400 12.5px "EB Garamond",Georgia,serif;fill:var(--muted);font-variant-numeric:lining-nums tabular-nums; }
-  .axis-label{ font:500 14px "EB Garamond",Georgia,serif;fill:var(--soft); }
-  .anno{ font:500 13px "EB Garamond",Georgia,serif;fill:var(--soft); }
-  .anno-r{ font:500 13px "EB Garamond",Georgia,serif;fill:var(--rose-fill); }
-  .leg{ font:400 13.5px "EB Garamond",Georgia,serif;fill:var(--soft);font-variant-numeric:lining-nums tabular-nums; }
-
-  /* pendulum coda — minimal, drawn over the pond */
-  figure.coda{ display:flex;justify-content:center;margin:3rem 0 .5rem; }
-  #pend{ width:100%;max-width:460px;height:auto;display:block;background:none; }
-
-  /* acknowledgements */
-  .post p.ack{ font-size:0.9rem;line-height:1.55;color:var(--soft);margin:2.4rem 0 0; }
-
-  /* footnotes */
-  .footnotes{ margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--line);
-    font-size:.82rem;color:var(--muted);line-height:1.6; }
-  .footnotes p{ margin:.5rem 0; }
-  .footnotes a{ color:var(--muted);border-bottom:1px solid var(--line-strong);text-decoration:none; }
-  .footnotes a:hover{ color:var(--ink); }
-
-  @media (max-width:600px){
-    .panel{ padding:1.2rem .9rem 1rem; }
-  }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="/horizon.css?v=71">
 </head>
-<body>
-<canvas id="bg" aria-hidden="true"></canvas>
-<div class="container">
-
-  <header>
-    <div class="header-copy">
-      <a class="site-name" id="site-name" href="/about/" aria-label="Cyrus Ghane">Cyrus Ghane</a>
-      <nav>
-        <a href="/about/">about</a>
-        <a href="/work/">work</a>
-        <a href="/writing/" aria-current="page">blogs</a>
-        <a href="mailto:cyrus.ghane@yale.edu">contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
+<body class="inner">
+<a class="skip" href="#main">Skip to content</a>
+<div class="site">
+  <aside class="side">
+    <img class="portrait" src="/assets/headshot.png?v=7" alt="Cyrus Ghane">
+    <div class="wordmark"><a class="name" href="/about/">Cyrus Ghane</a><svg class="mark" viewBox="0 0 240 22" aria-hidden="true"><path pathLength="1" d="M2 13 C40 13 58 7 92 8 C126 9 140 18 168 18 C192 18 198 7 186 5 C174 3 170 13 182 15 C198 18 220 12 238 11"/></svg></div>
+    <nav>
+      <a href="/about/">about</a>
+      <a href="/work/">work</a>
+      <a href="/writing/" aria-current="page">blogs</a>
+      <a href="mailto:cyrus.ghane@yale.edu">contact</a>
+    </nav>
+    <p class="stamp" aria-hidden="true"><span id="date"></span><br><span class="clock" id="clock"></span></p>
+  </aside>
+  <main class="main" id="main">
     <article class="post">
+      <a class="back" href="/writing/">← back</a>
       <h1 class="post-title">Before agentic, there was physics-informed</h1>
-      <p class="post-date">July 1st, 2026</p>
+      <p class="post-date">july 1, 2026<span class="sep">·</span>7 min read</p>
 
       <p>At least from my vantage point in the world, I've been seeing physics-informed AI/tech get *relatively* less fanfare than agentic tech in recent months.<a href="#fn1" id="ref1" class="fnmark" aria-label="footnote">†</a> Yet this is a shame, because I think a physics-informed lens can be an enormous value-add to virtually any computational field. For those unfamiliar, physics-informed describes exactly what it sounds like: using physical models (i.e., baking in physical constraints) to explain oftentimes seemingly unphysical phenomena. Applications range from AI digital twins for energy infrastructure (ThinkLabs AI) to drug discovery (Schrödinger, Inc.).</p>
 
@@ -194,7 +91,7 @@ gtag('config', 'G-7ZV7LSVQRZ');
         </li>
       </ol>
 
-      <h2>Generalizations <span style="font-family:'EB Garamond',serif;font-weight:400;font-size:.78em;color:var(--muted)">(i.e., why you should care)</span></h2>
+      <h2>Generalizations <span class="aside">(i.e., why you should care)</span></h2>
       <p>Aging is one of many young and interesting fields that may be exponentially amplified by the introduction of more physics-informed approaches and models. If you're asking yourself whether physics-informed methods may be useful in your own field, here is my homemade litmus test:</p>
 
       <ul class="litmus">
@@ -227,24 +124,15 @@ gtag('config', 'G-7ZV7LSVQRZ');
       </div>
 
     </article>
+    <svg class="mark end" viewBox="0 0 240 22" aria-hidden="true"><path pathLength="1" d="M2 13 C40 13 58 7 92 8 C126 9 140 18 168 18 C192 18 198 7 186 5 C174 3 170 13 182 15 C198 18 220 12 238 11"/></svg>
+    <p class="links"><a href="mailto:cyrus.ghane@yale.edu">email</a><span class="sep">·</span><a href="https://www.linkedin.com/in/cyrusghane/" target="_blank" rel="noopener">linkedin</a><span class="sep">·</span><a href="https://x.com/cyrusghane" target="_blank" rel="noopener">x</a><span class="sep">·</span><a href="https://github.com/cyrusghane" target="_blank" rel="noopener">github</a></p>
   </main>
-
-  <footer>
-    <a href="mailto:cyrus.ghane@yale.edu">email</a>
-    <span class="sep">·</span>
-    <a href="https://www.linkedin.com/in/cyrusghane/" target="_blank" rel="noopener">linkedin</a>
-    <span class="sep">·</span>
-    <a href="https://x.com/cyrusghane" target="_blank" rel="noopener">x</a>
-    <span class="sep">·</span>
-    <a href="https://github.com/cyrusghane" target="_blank" rel="noopener">github</a>
-  </footer>
-
 </div>
-
-<script src="/app.js?v=10"></script>
+<button class="land" id="land" type="button" aria-label="See the whole painting"></button>
+<script src="/horizon.js?v=27"></script>
 <script>
-/* ===== shared palette (matches styles.css) ===== */
-const C={ink:'#1b1a16',inkSoft:'#3b3a33',inkFaint:'#8d8a7e',line:'rgba(31,29,22,0.16)',lineSoft:'rgba(31,29,22,0.07)',green:'#5c6e5f',greenSoft:'#9aa79b',rose:'#b07a72'};
+/* ===== palette: the page's own white on the dark field (matches horizon.css) ===== */
+const C={ink:'#262320',inkSoft:'rgba(38,35,32,.8)',inkFaint:'rgba(38,35,32,.5)',line:'rgba(38,35,32,.16)',lineSoft:'rgba(38,35,32,.07)',fit:'#262320',green:'rgba(38,35,32,.5)'};
 const NS='http://www.w3.org/2000/svg';
 
 /* ===== FIG 1 — GOMPERTZ (real SSA data) ===== */
@@ -274,9 +162,9 @@ const NS='http://www.w3.org/2000/svg';
   el('text',{x:L+pw/2,y:T+ph+44,class:'axis-label','text-anchor':'middle'}).textContent='Age (years)';
   el('text',{x:18,y:T+ph/2,class:'axis-label','text-anchor':'middle',transform:`rotate(-90 18 ${T+ph/2})`}).textContent='Probability of death  qₓ  (log scale)';
   const lf=a=>(FIT.intc+FIT.slope*a)/Math.LN10;
-  el('line',{x1:X(0),y1:Y(lf(0)),x2:X(30),y2:Y(lf(30)),stroke:C.green,'stroke-width':1.6,'stroke-dasharray':'3 4',opacity:.55});
-  el('line',{x1:X(30),y1:Y(lf(30)),x2:X(90),y2:Y(lf(90)),stroke:C.green,'stroke-width':2.6,'stroke-linecap':'round'});
-  el('line',{x1:X(90),y1:Y(lf(90)),x2:X(100),y2:Y(lf(100)),stroke:C.green,'stroke-width':1.6,'stroke-dasharray':'3 4',opacity:.55});
+  el('line',{x1:X(0),y1:Y(lf(0)),x2:X(30),y2:Y(lf(30)),stroke:C.fit,'stroke-width':1.6,'stroke-dasharray':'3 4',opacity:.55});
+  el('line',{x1:X(30),y1:Y(lf(30)),x2:X(90),y2:Y(lf(90)),stroke:C.fit,'stroke-width':2.6,'stroke-linecap':'round'});
+  el('line',{x1:X(90),y1:Y(lf(90)),x2:X(100),y2:Y(lf(100)),stroke:C.fit,'stroke-width':1.6,'stroke-dasharray':'3 4',opacity:.55});
   AGES.forEach((a,i)=>el('circle',{cx:X(a),cy:Y(Math.log10(Q[i])),r:2.7,fill:'none',stroke:C.ink,'stroke-width':1.1,opacity:.8}));
   function leader(x1,y1,x2,y2){el('path',{d:`M${x1},${y1} Q ${(x1+x2)/2},${y1} ${x2},${y2}`,fill:'none',stroke:C.inkFaint,'stroke-width':.8,opacity:.55});}
   el('text',{x:X(3),y:Y(Math.log10(0.005372))-9,class:'anno-r'}).textContent='infant mortality';
@@ -285,11 +173,11 @@ const NS='http://www.w3.org/2000/svg';
   leader(X(23)-2,Y(Math.log10(0.0185))-3,X(18),Y(Math.log10(0.000717))-3);
   el('text',{x:X(98),y:Y(Math.log10(0.06)),class:'anno-r','text-anchor':'end'}).textContent='late-life plateau';
   leader(X(98)-1,Y(Math.log10(0.06))-4,X(99),Y(Math.log10(0.327))+3);
-  el('text',{x:X(70),y:Y(-2.55),class:'anno',fill:C.green,'text-anchor':'middle'}).textContent='Gompertz regime';
-  el('text',{x:X(70),y:Y(-2.55)+15,class:'anno',fill:C.green,'text-anchor':'middle','font-weight':400}).textContent='slope 0.080 yr⁻¹  ·  ≈8.7-yr doubling';
+  el('text',{x:X(70),y:Y(-2.55),class:'anno',fill:C.fit,'text-anchor':'middle'}).textContent='Gompertz regime';
+  el('text',{x:X(70),y:Y(-2.55)+15,class:'anno',fill:C.fit,'text-anchor':'middle','font-weight':400}).textContent='slope 0.080 yr⁻¹  ·  ≈8.7-yr doubling';
   const lx=L+16,ly=T+14;
-  el('rect',{x:lx-8,y:ly-12,width:226,height:46,rx:6,fill:'#fbf9f4',stroke:C.line,'stroke-width':1,opacity:.92});
-  el('line',{x1:lx,y1:ly+2,x2:lx+34,y2:ly+2,stroke:C.green,'stroke-width':2.6});
+  el('rect',{x:lx-8,y:ly-12,width:226,height:46,rx:6,fill:'rgba(250,248,243,.94)',stroke:C.line,'stroke-width':1,opacity:.92});
+  el('line',{x1:lx,y1:ly+2,x2:lx+34,y2:ly+2,stroke:C.fit,'stroke-width':2.6});
   el('text',{x:lx+44,y:ly+6,class:'leg'}).textContent='Fitted Gompertz law';
   el('circle',{cx:lx+17,cy:ly+22,r:2.7,fill:'none',stroke:C.ink,'stroke-width':1.1});
   el('text',{x:lx+44,y:ly+26,class:'leg'}).textContent='SSA data (US total, 2020)';

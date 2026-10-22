@@ -1,180 +1,206 @@
-/* horizon — the Oxbow as small impressionist dabs faded toward grey, its horizon, and the words that hang from it */
+/* horizon — a clean page of words, with the Oxbow as the ground it stands on */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --serif:"Benne","EB Garamond",Georgia,"Times New Roman",serif;
-  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  /* words on the painting */
-  --paper:#f7f4ee; --paper-80:rgba(247,244,238,.8); --paper-60:rgba(247,244,238,.6); --hair:rgba(247,244,238,.62);
-  --ground:#303030;                 /* what the painting dissolves into below the first screen */
-  --hair-soft:rgba(247,244,238,.18);
-  --sage:#b3c4b0; --rose:#d8a69d;    /* accents that read on the dark field */
-  --gutter:2.6rem;
+  --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+  --cream:#faf8f3; --ink:#262320; --ink-90:rgba(38,35,32,.9); --ink-80:rgba(38,35,32,.78); --ink-60:rgba(38,35,32,.66); --ink-40:rgba(38,35,32,.4);   /* ink-60 is 5:1 on the cream — the smallest text uses it; ink-40 is for rules only */
+  --hair:rgba(38,35,32,.3); --hair-soft:rgba(38,35,32,.14);
+  --land:30vh; --gutter:6vw;
 }
-html{font-size:17px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-body{font-family:var(--sans);background:#3c3c3c;color:var(--paper);min-height:100vh;min-height:100svh;overflow-x:hidden}
-body.landing{overflow-x:hidden;background:#6e6e6e}
-/* the landing shows the painting as it is; only a breath of shade behind the column and at the foot */
-body.landing .scene{filter:none}
-body.landing .veil{background:
-    radial-gradient(70% 55% at 50% 50%,rgba(16,16,16,.22) 0%,rgba(16,16,16,0) 100%),
-    linear-gradient(0deg,rgba(10,12,14,.16) 0%,rgba(10,12,14,0) 42%)}
-body.inner{background:var(--ground);--ink:var(--paper);--soft:var(--paper-80);--muted:var(--paper-60);--faint:var(--paper-60)}
-/* inner pages flow normally: the masthead sits near the top, and the page grows with whatever hangs from it */
-body.inner .stage{padding-top:10rem}
-body.inner .horizon{position:relative;top:auto}
-body.inner .cluster{position:relative;top:auto;left:auto;margin-left:var(--gutter);padding-bottom:3.2rem}
-body.inner .scene,body.inner .veil{position:absolute;inset:auto;top:0;left:0;right:0;height:100vh;height:100svh}
-/* inner pages: the same painting, but softened into a quiet field so the words have the room */
-body.inner .scene{overflow:hidden;background:none;filter:none}
-body.inner .scene::before{content:"";position:absolute;inset:-40px;
-  background:url("/assets/oxbow-mono.jpg?v=1") center 44%/cover no-repeat;
-  filter:blur(20px) brightness(.74) contrast(.96)}
-body.inner .veil{background:
-    linear-gradient(0deg,var(--ground) 0%,rgba(48,48,48,.86) 12%,rgba(48,48,48,0) 44%)}
+html{font-size:18px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-kerning:normal}
+::selection{background:var(--ink);color:var(--cream)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:1rem;z-index:10;padding:.4rem .75rem;background:var(--ink);color:var(--cream);text-decoration:none}
+.skip:focus{left:1rem}
+body{font-family:var(--serif);color:var(--ink);background:var(--cream);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;font-variant-numeric:oldstyle-nums}
 
-/* ---------- the painting, built from small impressionist dabs, its colour faded toward grey ---------- */
-.scene{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:url("/assets/oxbow-imp-faded.jpg?v=1") center 44%/cover no-repeat;
-  filter:brightness(.97) contrast(.96);
-  opacity:0;animation:sceneIn 1.1s ease .02s forwards}
-@keyframes sceneIn{to{opacity:1}}
-.veil{position:fixed;inset:0;z-index:2;pointer-events:none;
-  background:
-    linear-gradient(180deg,rgba(10,12,14,.16) 0%,rgba(10,12,14,0) 28%),
-    linear-gradient(0deg,rgba(10,12,14,.36) 0%,rgba(10,12,14,.1) 38%,rgba(10,12,14,0) 58%),
-    radial-gradient(115% 85% at 50% 50%,rgba(0,0,0,0) 62%,rgba(0,0,0,.14) 100%)}
-
-/* ---------- the strip: today's date and a ticking clock, across the top of the landing ---------- */
-.strip{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:baseline;
-  padding:1.5rem var(--gutter);font-family:var(--serif);font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-80);
-  opacity:0;animation:stripIn .9s ease .55s forwards}
-@keyframes stripIn{to{opacity:1}}
-.strip .clock{position:absolute;left:50%;transform:translateX(-50%);letter-spacing:.06em;color:var(--paper)}
+/* ---------- the page: a sidebar and one column of words above; the land lies along the foot ---------- */
+.site{flex:1 0 auto;display:grid;grid-template-columns:13.5rem minmax(0,44rem);column-gap:5rem;justify-content:center;align-items:start;align-content:start;padding:4.5rem var(--gutter) 3rem}
+/* the land lies along the foot of the screen and stays there while the words scroll above it;
+   horizon.js tints it with the light of the New Haven hour (--night, --gold) */
+.land{position:sticky;bottom:0;z-index:1;flex:0 0 auto;height:var(--land);min-height:160px;border-top:1px solid var(--hair);
+  background:url("/assets/oxbow-imp-rich.jpg?v=1") center 66%/cover no-repeat;
+  background-image:image-set(url("/assets/oxbow-imp-rich.webp?v=1") type("image/webp"),url("/assets/oxbow-imp-rich.jpg?v=1") type("image/jpeg"));
+  --night:0;--gold:0;animation:landIn .9s ease both;
+  display:block;width:100%;padding:0;border-top:1px solid var(--hair);border-left:0;border-right:0;border-bottom:0;font:inherit;appearance:none;-webkit-appearance:none;
+  cursor:zoom-in;transition:height .7s cubic-bezier(.22,.61,.36,1),background-position .7s cubic-bezier(.22,.61,.36,1)}
+/* click the land and it lifts to fill the screen — the whole painting, as the site once was; click again or press Escape and it settles back */
+.land.up{position:fixed;left:0;right:0;bottom:0;z-index:20;height:100vh;height:100svh;background-position:center 44%;cursor:zoom-out}
+.land.down{height:var(--land);background-position:center 66%;cursor:zoom-in}
+body:has(.land.up){padding-bottom:var(--land)}
+@keyframes landIn{from{opacity:0}to{opacity:1}}
+.land::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(rgba(22,28,48,var(--night)),rgba(22,28,48,var(--night))),linear-gradient(rgba(255,170,90,var(--gold)),rgba(255,170,90,var(--gold)))}
+body.landing{--land:38vh}
+body.inner{--land:22vh}
+.side{position:static}
+@media (min-height:760px){.side{position:sticky;top:4.5rem}}
+.portrait{height:136px;width:auto;display:block;margin-bottom:1.2rem}
+.name{display:block;font-weight:600;font-size:1.9rem;line-height:1.15;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+/* the rule under the name is the river: one ink line the width of the name, drawn on load, redrawn when the name is hovered; it also closes a post */
+.wordmark{display:inline-flex;flex-direction:column;align-items:stretch;max-width:100%}
+.mark{display:block;width:0;min-width:100%;height:auto;margin:.3rem 0 0;overflow:visible}
+.mark path{fill:none;stroke:var(--ink-80);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.2s cubic-bezier(.22,.61,.36,1) .3s forwards}
+.mark.end{width:9rem;min-width:0;margin:2.8rem auto 0}
+.mark.end path{stroke:var(--ink-60);stroke-width:1.3;animation-delay:.2s}
+@keyframes draw{to{stroke-dashoffset:0}}
+nav{display:flex;flex-direction:column;align-items:flex-start;gap:.25rem;margin-top:.8rem;font-size:1.12rem}
+nav a{color:var(--ink-60);text-decoration:none;
+  background-image:linear-gradient(var(--ink),var(--ink)),linear-gradient(var(--hair),var(--hair));background-repeat:no-repeat;
+  background-size:0 1px,0 1px;background-position:0 100%,0 100%;transition:color .15s ease,background-size .4s cubic-bezier(.22,.61,.36,1)}
+nav a:hover,nav a:focus-visible{color:var(--ink);background-size:100% 1px,0 1px}
+nav a[aria-current="page"]{color:var(--ink);background-size:0 1px,100% 1px}
+/* the links sign off the column: under the bio, after a list, after a post */
+.links{margin-top:2rem;font-size:1.02rem;color:var(--ink-60)}
+.links a{color:var(--ink)}
+.links .sep{margin:0 .5rem}
+body.inner .links{margin-top:3rem}
+/* today's date and the hour in New Haven (horizon.js) */
+.stamp{margin-top:1.4rem;font-size:.82rem;letter-spacing:.06em;line-height:1.5;color:var(--ink-60);font-variant-numeric:lining-nums tabular-nums}
 .clock .d{display:inline-block;width:.6em;text-align:center}
 .clock .c{display:inline-block;width:.34em;text-align:center;opacity:.7}
 
-/* ---------- the first screen: the horizon, extended into a rule; the name rests on it ---------- */
-.stage{position:relative;z-index:4;min-height:100vh;min-height:100svh}
-/* the landing: one centred column that fills the screen — name and portrait on a rule, the nav, the words, the links */
-.wrap{position:relative;z-index:4;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:5.5rem var(--gutter) 3.5rem}
-.col{width:min(46rem,100%)}
-/* the name at the left end of the rule, the portrait at the right end */
-.id{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem}
-body.landing .name{line-height:1.2;padding-bottom:0}
-.rule{height:1px;background:var(--hair)}
-.horizon{position:absolute;left:0;right:0;top:44%;height:1px;pointer-events:none;background:var(--hair);
-  transform:scaleX(0);transform-origin:0 50%;animation:draw 1.2s cubic-bezier(.22,.61,.36,1) .15s forwards}
-@keyframes draw{to{transform:scaleX(1)}}
-.cluster{position:absolute;left:var(--gutter);top:44%;width:min(46rem,calc(100vw - 2*var(--gutter)))}
-body.inner .cluster{width:min(62rem,calc(100vw - 2*var(--gutter)))}
-.shelf{position:absolute;left:0;right:0;bottom:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem}
-/* the portrait stands beside the name, on the same line */
-/* the portrait rides a little above the rule */
-.portrait{height:172px;width:auto;display:block;margin-bottom:.65rem;filter:drop-shadow(0 10px 22px rgba(0,0,0,.28))}
-body.inner .portrait{height:144px}
-.name{display:block;padding-bottom:.08em;line-height:1.35;white-space:nowrap;
-  font-family:"EB Garamond",Georgia,"Times New Roman",serif;font-weight:600;font-size:clamp(3.2rem,7.4vw,6.6rem);letter-spacing:-.018em;
-  color:var(--paper);text-decoration:none;text-shadow:0 1px 16px rgba(0,0,0,.28)}
-nav{display:flex;flex-wrap:wrap;gap:.3rem 2rem;padding-top:1.2rem;font-family:var(--serif);font-size:1.18rem;font-weight:400;letter-spacing:.005em}
-nav a{position:relative;color:var(--paper-80);text-decoration:none;padding-bottom:1px;transition:color .25s ease}
-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1px;background:var(--paper);
-  transition:right .3s cubic-bezier(.22,.61,.36,1)}
-nav a:hover,nav a:focus-visible{color:var(--paper);outline:none}
-nav a:hover::after,nav a:focus-visible::after{right:0}
-nav a[aria-current="page"]{color:var(--paper)}
-nav a[aria-current="page"]::after{right:0;background:var(--hair)}
-.bio{margin-top:1.7rem;font-family:var(--serif);font-size:1.28rem;line-height:1.45;color:#ffffff;text-shadow:0 1px 14px rgba(0,0,0,.42)}
-.bio a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .25s ease}
-.bio a:hover,.bio a:focus-visible{border-bottom-color:var(--paper);outline:none}
-.bio2{margin-top:.9rem;color:#ffffff}
+/* the words */
+.main{padding-top:.3rem}
+.bio{font-size:1.22rem;line-height:1.5;color:var(--ink-90)}
+.bio+.bio{margin-top:.9rem}
+.bio,.desc,.post p,.post li{text-wrap:pretty}   /* wide columns wrap on their own; phones get hyphenation below */
+.title,.post-title,.post h2,.post h3{text-wrap:balance}
+.bio a,.more a,.links a{color:inherit;text-decoration:none;
+  background-image:linear-gradient(var(--ink),var(--ink)),linear-gradient(var(--hair),var(--hair));background-repeat:no-repeat;
+  background-size:0 1px,100% 1px;background-position:0 100%,0 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  transition:background-size .4s cubic-bezier(.22,.61,.36,1)}
+.bio a:hover,.more a:hover,.links a:hover,.bio a:focus-visible,.more a:focus-visible,.links a:focus-visible{background-size:100% 1px,100% 1px}
+/* "surprises" is one: it lifts the land */
+a.cue2{color:inherit;text-decoration:none;
+  background-image:linear-gradient(var(--ink),var(--ink)),repeating-linear-gradient(90deg,var(--ink-60) 0 1.5px,transparent 1.5px 4px);background-repeat:no-repeat;
+  background-size:0 1px,100% 1px;background-position:0 100%,0 100%;transition:background-size .4s cubic-bezier(.22,.61,.36,1)}
+a.cue2:hover,a.cue2:focus-visible{background-size:100% 1px,100% 1px}
 /* email links whisper the address on hover; on a desktop a click copies it and the whisper says "copied" (horizon.js) */
 .email-hint{position:relative}
-.email-hint .eh-tip{position:absolute;left:50%;bottom:calc(100% + .15rem);transform:translate(-50%,3px);white-space:nowrap;
-  font-family:var(--serif);font-style:normal;font-size:.66rem;font-weight:450;letter-spacing:.05em;color:var(--paper);
-  background:rgba(22,22,22,.85);border-radius:2px;padding:.22rem .5rem;opacity:0;pointer-events:none;transition:opacity .28s ease,transform .28s ease}
+.email-hint .eh-tip{position:absolute;left:50%;bottom:calc(100% + .2rem);transform:translate(-50%,3px);white-space:nowrap;
+  font-size:.66rem;letter-spacing:.05em;color:var(--cream);background:rgba(38,35,32,.92);border-radius:2px;padding:.22rem .5rem;
+  opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}
 .email-hint:hover .eh-tip,.email-hint:focus-visible .eh-tip,.email-hint.copied .eh-tip{opacity:1;transform:translate(-50%,0)}
-.links{margin-top:2.2rem;font-family:var(--serif);font-size:1.05rem;letter-spacing:.01em;color:var(--paper-80)}
-.links a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:border-color .25s ease}
-.links a:hover,.links a:focus-visible{border-bottom-color:var(--paper);outline:none}
-.links .sep{margin:0 .6rem}
 
-/* ---------- the lists: hang from the nav, in the same white as the bio ---------- */
-.list{list-style:none;margin-top:2.2rem}
-.list li{border-top:1px solid var(--hair-soft)}
-.list li:first-child{border-top:none}
-.work li{display:grid;grid-template-columns:1fr auto;gap:0 2rem;padding:2rem 0;align-items:start}
-.work li:first-child{padding-top:.1rem}
-.work-title{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.22;color:var(--paper)}
-.work-org{margin-top:.55rem;font-family:var(--serif);font-size:.9rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--paper-60)}
-.work-desc{font-family:var(--serif);margin-top:.85rem;font-size:1.3rem;line-height:1.5;color:var(--paper-80);max-width:58rem}
-.work-links{margin-top:.95rem;font-family:var(--serif);font-size:1rem;letter-spacing:.01em;color:var(--paper-60)}
-.work-links a{color:var(--paper-80);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:color .2s ease,border-color .2s ease}
-.work-links a:hover,.work-links a:focus-visible{color:var(--paper);border-bottom-color:var(--paper);outline:none}
-.work-links .sep{margin:0 .55rem}
-.work-year{font-family:var(--serif);font-size:1.02rem;color:var(--paper-80);white-space:nowrap;padding-top:.45rem;font-variant-numeric:tabular-nums}
-.posts li{display:flex;justify-content:space-between;align-items:baseline;gap:2rem;padding:1.8rem 0}
-.posts li:first-child{padding-top:.1rem}
-.post-link{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.22;letter-spacing:-.005em;color:var(--paper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s ease}
-.post-link:hover,.post-link:focus-visible{border-bottom-color:var(--hair);outline:none}
-.post-when{font-family:var(--serif);font-size:1.15rem;color:var(--paper-80);white-space:nowrap;font-variant-numeric:lining-nums}
-.post-desc{font-family:var(--serif);font-size:1.26rem;line-height:1.45;color:var(--paper-80);margin-top:.45rem;max-width:56rem}
+/* a hand-drawn arrow from "cloudy days" down to the land, drawn on load (horizon.js) */
+.arrow{position:fixed;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;transition:opacity .3s ease}
+.arrow path{fill:none;stroke:var(--ink-60);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+body:has(.land.up) .arrow{opacity:0}
+@media (max-width:860px){.arrow{display:none}}
 
-/* ---------- a post: the same white, set for reading ---------- */
-.post{margin-top:2.1rem;font-family:var(--serif);color:var(--paper-80)}
-.post-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,3.4vw,1.9rem);line-height:1.15;letter-spacing:-.01em;color:var(--paper);margin:0}
-.post p.post-date{font-family:var(--sans);font-size:.78rem;letter-spacing:.03em;color:var(--paper-80);margin:.85rem 0 2.3rem}
-.post p{font-size:1.14rem;line-height:1.6;color:var(--paper-80);margin:1.1rem 0}
-.post a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .22s ease}
-.post a:hover,.post a:focus-visible{border-bottom-color:var(--paper);outline:none}
+/* ---------- the lists: the year in the margin, the title beside it ---------- */
+.list{list-style:none}
+.list li{display:grid;grid-template-columns:4.8rem minmax(0,1fr);column-gap:1rem;padding:1.05rem 0;border-top:1px solid var(--hair-soft)}
+.list li:first-child{border-top:none;padding-top:.3rem}
+.when{font-size:1.05rem;color:var(--ink-60);padding-top:.22rem;white-space:nowrap}
+.title{font-size:1.3rem;line-height:1.3;color:var(--ink);text-decoration:none}
+a.title{text-decoration:none;background-image:linear-gradient(var(--hair),var(--hair));background-repeat:no-repeat;background-size:0 1px;background-position:0 100%;transition:background-size .4s cubic-bezier(.22,.61,.36,1)}
+a.title:hover,a.title:focus-visible{background-size:100% 1px}
+.meta{margin-top:.2rem;font-size:1.02rem;color:var(--ink-60)}
+.desc{margin-top:.45rem;font-size:1.1rem;line-height:1.5;color:var(--ink-80)}
+.more{margin-top:.5rem;font-size:1rem;color:var(--ink-60)}
+.more .sep{margin:0 .45rem}
+
+/* ---------- a post: the same white, set for reading on a narrow measure ---------- */
+.post{margin-top:.2rem;max-width:40rem;font-family:var(--serif);color:var(--ink-80)}
+.post .back{display:inline-block;font-size:.98rem;color:var(--ink-60);text-decoration:none;margin-bottom:1.5rem;transition:color .2s ease}
+.post .back{transition:color .2s ease,transform .2s ease}
+.post .back:hover,.post .back:focus-visible{color:var(--ink);transform:translateX(-4px)}
+.post-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,3.4vw,1.9rem);line-height:1.15;letter-spacing:-.01em;color:var(--ink);margin:0}
+.post p.post-date{font-size:.98rem;letter-spacing:.01em;color:var(--ink-60);margin:.6rem 0 2.2rem}
+.post-date .sep{margin:0 .5rem}
+.post p{font-size:1.14rem;line-height:1.6;color:var(--ink-90);margin:1.1rem 0}
+.post a{color:var(--ink);text-decoration:none;
+  background-image:linear-gradient(var(--ink),var(--ink)),linear-gradient(var(--hair),var(--hair));background-repeat:no-repeat;
+  background-size:0 1px,100% 1px;background-position:0 100%,0 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  transition:background-size .4s cubic-bezier(.22,.61,.36,1)}
+.post a:hover,.post a:focus-visible{background-size:100% 1px,100% 1px}
 .post em{font-style:italic}
-.post h2{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.2;color:var(--paper);margin:2.9rem 0 .2rem}
-.post h3{font-family:var(--serif);font-weight:500;font-size:1.28rem;color:var(--paper-80);margin:2.4rem 0 .3rem}
+.post h2{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.2;color:var(--ink);margin:2.9rem 0 .2rem}
+.post h2 .aside{font-weight:400;font-size:.78em;color:var(--ink-60)}
+.post h3{font-family:var(--serif);font-weight:500;font-size:1.28rem;color:var(--ink-80);margin:2.4rem 0 .3rem}
+/* footnotes: a dagger in the text, the note at the foot */
+.post .fnmark{background:none;color:var(--ink-60);font-weight:600;font-size:.78em;line-height:0;vertical-align:super;margin-left:2px;padding:0 1px;display:inline-block;transition:color .15s ease}
+.post a.fnmark:hover,.post a.fnmark:focus-visible{color:var(--ink)}
+.post .fnmark-foot{font-size:.92em;vertical-align:baseline;margin-right:4px}
+.post .footnotes{margin-top:2.4rem;padding-top:1.3rem;border-top:1px solid var(--hair-soft);font-size:.9rem;line-height:1.6;color:var(--ink-60)}
+.post .footnotes p{font-size:inherit;color:inherit;margin:.5rem 0}
+.post .footnotes a{color:var(--ink-60)}
+.post .footnotes a:hover,.post .footnotes a:focus-visible{color:var(--ink)}
+/* lists inside a post */
+.post ol.outlook{margin:1.4rem 0;padding:0;list-style:none;counter-reset:item}
+.post ol.outlook>li{position:relative;padding-left:1.9rem;margin:1.4rem 0;counter-increment:item;font-size:1.14rem;line-height:1.6;color:var(--ink-90)}
+.post ol.outlook>li::before{content:counter(item);position:absolute;left:0;top:0;width:1.5rem;font-size:1.1rem;font-weight:500;line-height:1.85rem;color:var(--ink-60);font-variant-numeric:tabular-nums}
+.post ol.outlook .item-label{font-weight:600;color:var(--ink)}
+.post ul.litmus,.post ul.questions{margin:1.4rem 0;padding-left:1.3rem;list-style:none}
+.post ul.litmus>li,.post ul.questions>li{position:relative;margin:1rem 0;font-size:1.14rem;line-height:1.55;color:var(--ink-90)}
+.post ul.litmus>li{font-weight:600;color:var(--ink)}
+.post ul.litmus>li::before,.post ul.questions>li::before{content:"";position:absolute;left:-1.05rem;top:.62rem;width:5px;height:5px;border-radius:50%;background:var(--ink-60)}
+.post ul.litmus ul{list-style:none;margin:.3rem 0 0;padding-left:1rem}
+.post ul.litmus ul li{position:relative;font-weight:400;color:var(--ink-80);font-size:1.02rem;line-height:1.55}
+.post ul.litmus ul li::before{content:"";position:absolute;left:-.95rem;top:.6rem;width:5px;height:5px;border-radius:50%;border:1px solid var(--ink-60)}
+/* figures, drawn in the same white */
+.post figure{margin:2.4rem 0}
+.post .fig-head{display:flex;align-items:baseline;gap:.7rem;margin-bottom:.8rem}
+.post .fig-title{font-weight:500;font-size:1.1rem;color:var(--ink);line-height:1.25;margin:0}
+.post .panel{background:rgba(38,35,32,.035);border:1px solid var(--hair-soft);border-radius:10px;padding:1.5rem 1.2rem 1.1rem}
+.post figcaption{font-size:.95rem;color:var(--ink-60);margin-top:.8rem;line-height:1.55}
+.post figcaption .src{font-style:italic}
+.post svg{display:block;width:100%;height:auto;overflow:visible}
+.post .tick{font:400 12.5px var(--serif);fill:var(--ink-60);font-variant-numeric:lining-nums tabular-nums}
+.post .axis-label{font:500 14px var(--serif);fill:var(--ink-80)}
+.post .anno{font:500 13px var(--serif);fill:var(--ink-80)}
+.post .anno-r{font:italic 400 13px var(--serif);fill:var(--ink-60)}
+.post .leg{font:400 13.5px var(--serif);fill:var(--ink-80);font-variant-numeric:lining-nums tabular-nums}
+.post figure.coda{display:flex;justify-content:center;margin:2.6rem 0 .5rem}
+.post figure.coda canvas{width:100%;max-width:420px;height:auto;display:block}
+.post p.ack{font-size:.92rem;line-height:1.55;color:var(--ink-60);margin:2.4rem 0 0}
+/* the canon: a reading list */
+.post .crit-n{color:var(--ink-60);font-weight:500;font-variant-numeric:tabular-nums}
+.post ul.canon{list-style:none;margin:1.8rem 0 0;padding:0;border-top:1px solid var(--hair-soft)}
+.post ul.canon li{padding:.5rem 0;border-bottom:1px solid var(--hair-soft);font-size:1.1rem;line-height:1.4}
+.post ul.canon li:last-child{border-bottom:none}
+.post ul.canon .canon-link{font-weight:500;color:var(--ink);background:none;transition:color .2s ease}
+.post ul.canon .canon-link:hover,.post ul.canon .canon-link:focus-visible{color:var(--ink-80)}
+.post ul.canon .canon-author{font-size:.82em;color:var(--ink-60)}
+.post ul.canon .canon-author::before{content:"  –  "}
+.post p.updated{font-size:.92rem;line-height:1.55;color:var(--ink-60);font-style:italic;margin:2.4rem 0 0;padding-top:1.2rem;border-top:1px solid var(--hair-soft)}
 
-/* the foot of an inner page, on the ground */
-.foot{position:relative;z-index:4;padding:0 var(--gutter) 2.4rem;font-family:var(--serif);font-size:1.05rem;letter-spacing:.01em;color:var(--paper-80)}
-.foot a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:border-color .25s ease}
-.foot a:hover,.foot a:focus-visible{border-bottom-color:var(--paper);outline:none}
-.foot .sep{margin:0 .6rem}
-
-/* ---------- entrance ---------- */
-.name,.portrait,nav,.bio,.links,.list,.foot{opacity:0;transform:translateY(6px);animation:rise .9s cubic-bezier(.22,.61,.36,1) forwards}
-.name{animation-delay:.3s} .portrait{animation-delay:.35s} nav{animation-delay:.4s} .bio{animation-delay:.5s} .links{animation-delay:.6s} .list{animation-delay:.5s} .foot{animation-delay:.65s}
-@keyframes rise{to{opacity:1;transform:none}}
 
 /* ---------- responsive ---------- */
+@media (max-height:800px){
+  body.landing{--land:26vh}
+  .site{padding-top:3.5rem}
+}
+@media (max-width:860px){
+  .site{grid-template-columns:11rem minmax(0,1fr);column-gap:2.5rem;padding:3.5rem 5vw 3rem}
+}
 @media (max-width:720px){
   html{font-size:16px}
-  :root{--gutter:1.3rem}
-  .name{font-size:2.5rem}
-  nav{gap:.3rem 1.4rem;padding-top:.95rem;font-size:.92rem}
-  .bio{margin-top:1.1rem;font-size:1.04rem;line-height:1.4}
-  .bio2{margin-top:.6rem}
-  .shelf,.id{gap:1rem}
-  .portrait{height:118px}
-  body.inner .portrait{height:102px}
-  body.inner .stage{padding-top:6.4rem}
-  .strip{padding:1.1rem var(--gutter);font-size:.78rem}
-  .strip .clock{position:static;transform:none}
-  /* phones: the column starts a fifth of the way down and the page scrolls; the strip shows the date and the hour only */
-  .wrap{align-items:flex-start;padding-top:22vh;padding-bottom:2rem}
-  .strip .place{display:none}
+  :root{--land:22vh}
+  body.inner{--land:22vh}
+  .site{grid-template-columns:1fr;row-gap:1.5rem;padding:1.75rem 1.25rem 2.5rem}
+  .side{position:static;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:1rem;align-items:end}
+  .portrait{height:88px;margin:0;grid-row:1/3}
+  .wordmark{grid-column:2}
+  .name{font-size:1.55rem}
+  nav{grid-column:2;flex-direction:row;flex-wrap:wrap;gap:.2rem 1rem;margin-top:.45rem;font-size:1rem}
+  .stamp{grid-column:1/3;margin-top:.9rem}
+  .main{padding-top:0}
+  .bio{font-size:1.12rem}
   .links{margin-top:1.6rem}
-  .list{margin-top:1.6rem}
-  .work li{grid-template-columns:1fr;gap:.45rem;padding:1.3rem 0}
-  .work-title,.post-link{font-size:1.38rem}
-  .work-desc,.post-desc{font-size:1.12rem}
-  .work-year{padding-top:0}
-  .posts li{flex-direction:column;gap:.3rem;align-items:flex-start}
+  .desc,.post p,.post li{-webkit-hyphens:auto;hyphens:auto}
+  .list li{grid-template-columns:1fr;row-gap:.15rem;padding:.95rem 0}
+  .when{padding-top:0;font-size:.95rem}
+  .post{max-width:none}
+  .land:not(.up){position:static;background-size:190% auto;background-position:58% 64%;
+    background-image:url("/assets/oxbow-imp-rich-900.jpg?v=1");
+    background-image:image-set(url("/assets/oxbow-imp-rich-900.webp?v=1") type("image/webp"),url("/assets/oxbow-imp-rich-900.jpg?v=1") type("image/jpeg"))}
 }
-/* short windows — and narrow ones, where the bio wraps onto more lines — take the smaller landing type so the words still fit */
-@media (min-width:721px) and (max-height:780px), (min-width:721px) and (max-width:900px) and (max-height:920px){
-  body.landing .bio{font-size:1.12rem;margin-top:1.3rem}
-  body.landing .bio2{margin-top:.7rem}
-  body.landing .portrait{height:144px}
-  body.landing .name{font-size:clamp(3rem,6.4vw,5.6rem)}
-}
-@media (prefers-reduced-motion:reduce){
-  .scene,.horizon,.name,nav,.bio,.links,.portrait,.list,.foot{animation:none;opacity:1;transform:none}
-  nav a::after{transition:none}
-  .strip{animation:none;opacity:1}
+@media (prefers-reduced-motion:reduce){.land{transition:none;animation:none}.mark path{animation:none;stroke-dashoffset:0}}
+@media print{
+  .land,.stamp,.skip,.email-hint .eh-tip{display:none}
+  body{background:#fff}
+  .site{display:block}
+  .side{position:static;margin-bottom:1.5rem}
 }

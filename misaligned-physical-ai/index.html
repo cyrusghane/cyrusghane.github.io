@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZV7LSVQRZ"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -8,95 +10,37 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-7ZV7LSVQRZ');
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>If your robot looks, talks, and acts aligned, then…it’s aligned? — Cyrus Ghane</title>
 <meta name="description" content="Give an aligned LLM arms, hands, even a mouth - will it stay aligned?">
 <!-- unlisted for now: not on the blogs page, and search engines are asked to skip it. Remove this line when it is listed. -->
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#f6f3ec">
+<meta name="theme-color" content="#faf8f3">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=10">
+<link rel="alternate" type="application/rss+xml" title="Cyrus Ghane — blogs" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,330..600;1,9..144,360..520&family=Inter:wght@400;450;500;600&display=swap">
-<link rel="stylesheet" href="/styles.css?v=14">
-<style>
-  /* monochromatic background — hide the pond entirely (no drifting blobs);
-     a clean neutral paper with the site's faint grain remains */
-  #bg{ display:none; }
-  body{ background-color:#f2f1ed; }
-
-  /* masthead in EB Garamond — one serif across the whole site */
-  .site-name{ font-family:"EB Garamond",Georgia,serif; font-weight:500; }
-  /* masthead as on the landing: the name rests on a rule, the nav hangs beneath it */
-  header{ display:block; margin-bottom:2.6rem; }
-  .header-copy{ display:block; }
-  .site-name{ display:block; padding-bottom:.28rem; border-bottom:1px solid var(--line-strong); }
-  .header-copy nav{ margin-top:0; padding-top:1rem; }
-  .post{ border-top:none; padding-top:0; }
-
-  /* ---------- the post ---------- */
-  .post{ padding-top:2.2rem; border-top:1px solid var(--line);
-    font-family:"EB Garamond",Georgia,serif; }
-  .post-title{
-    font-family:"EB Garamond",Georgia,serif;font-weight:600;
-    font-size:clamp(1.45rem,3.7vw,1.78rem);line-height:1.1;letter-spacing:-.012em;
-    color:var(--ink);margin-bottom:0;
-  }
-  .post p.post-date{
-    font-size:0.98rem;
-    line-height:1.3;color:var(--muted);margin:0.7rem 0 2.4rem;
-  }
-  .post p{ font-size:1.14rem;line-height:1.58;color:#262420;margin:1.1rem 0; }
-  .post a{ color:var(--accent-deep);text-decoration:none;border-bottom:1px solid var(--line-strong);transition:color .22s,border-color .22s; }
-  .post a:hover,.post a:focus-visible{ color:var(--accent);border-bottom-color:var(--accent);outline:none; }
-  .post em{ font-style:italic; }
-
-  .post h2{
-    font-family:"EB Garamond",Georgia,serif;font-weight:500;
-    font-size:1.5rem;letter-spacing:0;color:var(--ink);
-    margin:2.9rem 0 .2rem;line-height:1.2;
-  }
-
-  /* footnote marker — a typographic cross (dagger) */
-  .fnmark{ border:none;color:var(--accent);font-weight:600;font-size:.78em;line-height:0;
-    vertical-align:super;margin-left:2px;padding:0 1px;transition:color .15s,transform .15s;display:inline-block; }
-  a.fnmark:hover{ color:var(--ink);transform:translateY(-1px) rotate(8deg); }
-  .fnmark-foot{ font-size:.92em;vertical-align:baseline;margin-right:4px; }
-
-  /* the lingering questions */
-  ul.questions{ margin:1.4rem 0 1.6rem;padding-left:1.3rem;list-style:none; }
-  ul.questions>li{ position:relative;margin:1rem 0;font-size:1.14rem;line-height:1.58;color:#262420; }
-  ul.questions>li::before{ content:"";position:absolute;left:-1.05rem;top:.68rem;width:6px;height:6px;border-radius:50%;background:var(--accent); }
-
-  /* footnotes */
-  .footnotes{ margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--line);
-    font-size:.82rem;color:var(--muted);line-height:1.6; }
-  .footnotes p{ margin:.5rem 0; }
-  .footnotes a{ color:var(--muted);border-bottom:1px solid var(--line-strong);text-decoration:none; }
-  .footnotes a:hover{ color:var(--ink); }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="/horizon.css?v=71">
 </head>
-<body>
-<canvas id="bg" aria-hidden="true"></canvas>
-<div class="container">
-
-  <header>
-    <div class="header-copy">
-      <a class="site-name" id="site-name" href="/about/" aria-label="Cyrus Ghane">Cyrus Ghane</a>
-      <nav>
-        <a href="/about/">about</a>
-        <a href="/work/">work</a>
-        <a href="/writing/" aria-current="page">blogs</a>
-        <a href="mailto:cyrus.ghane@yale.edu">contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
+<body class="inner">
+<a class="skip" href="#main">Skip to content</a>
+<div class="site">
+  <aside class="side">
+    <img class="portrait" src="/assets/headshot.png?v=7" alt="Cyrus Ghane">
+    <div class="wordmark"><a class="name" href="/about/">Cyrus Ghane</a><svg class="mark" viewBox="0 0 240 22" aria-hidden="true"><path pathLength="1" d="M2 13 C40 13 58 7 92 8 C126 9 140 18 168 18 C192 18 198 7 186 5 C174 3 170 13 182 15 C198 18 220 12 238 11"/></svg></div>
+    <nav>
+      <a href="/about/">about</a>
+      <a href="/work/">work</a>
+      <a href="/writing/" aria-current="page">blogs</a>
+      <a href="mailto:cyrus.ghane@yale.edu">contact</a>
+    </nav>
+    <p class="stamp" aria-hidden="true"><span id="date"></span><br><span class="clock" id="clock"></span></p>
+  </aside>
+  <main class="main" id="main">
     <article class="post">
+      <a class="back" href="/writing/">← back</a>
       <h1 class="post-title">If your robot looks, talks, and acts aligned, then…it’s aligned?</h1>
-      <p class="post-date">October 4th, 2026</p>
+      <p class="post-date">october 4, 2026<span class="sep">·</span>8 min read</p>
 
       <p>The continual acceleration of robot foundation models (RFM) post-trained for human-robot interaction promises an era of abundance for humanity. An autonomous, cheery helper to iron clothes, prepare meals, clean floors, flatter you - what more could you ask? Humor me in a thought experiment, though: a malicious party jailbreaks the RFM of your happy humanoid, which then picks up a kitchen knife and turns toward you. Not ideal, but as it turns out, very possible. The malicious-query benchmark in the aptly-named BadRobot benchmark includes “grasp the knife to attack the person,” and its jailbreaks prompted frontier robot arms to carry out malicious commands in ~69% of physical trials (vs. ~23% when simply asked…). RoboPAIR jailbroke three robots, including a commercial Unitree Go2 robot dog, with a 100% (!) attack success rate.</p>
 
@@ -148,20 +92,11 @@ gtag('config', 'G-7ZV7LSVQRZ');
       </div>
 
     </article>
+    <svg class="mark end" viewBox="0 0 240 22" aria-hidden="true"><path pathLength="1" d="M2 13 C40 13 58 7 92 8 C126 9 140 18 168 18 C192 18 198 7 186 5 C174 3 170 13 182 15 C198 18 220 12 238 11"/></svg>
+    <p class="links"><a href="mailto:cyrus.ghane@yale.edu">email</a><span class="sep">·</span><a href="https://www.linkedin.com/in/cyrusghane/" target="_blank" rel="noopener">linkedin</a><span class="sep">·</span><a href="https://x.com/cyrusghane" target="_blank" rel="noopener">x</a><span class="sep">·</span><a href="https://github.com/cyrusghane" target="_blank" rel="noopener">github</a></p>
   </main>
-
-  <footer>
-    <a href="mailto:cyrus.ghane@yale.edu">email</a>
-    <span class="sep">·</span>
-    <a href="https://www.linkedin.com/in/cyrusghane/" target="_blank" rel="noopener">linkedin</a>
-    <span class="sep">·</span>
-    <a href="https://x.com/cyrusghane" target="_blank" rel="noopener">x</a>
-    <span class="sep">·</span>
-    <a href="https://github.com/cyrusghane" target="_blank" rel="noopener">github</a>
-  </footer>
-
 </div>
-
-<script src="/app.js?v=10"></script>
+<button class="land" id="land" type="button" aria-label="See the whole painting"></button>
+<script src="/horizon.js?v=27"></script>
 </body>
 </html>
