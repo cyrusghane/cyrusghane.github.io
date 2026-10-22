@@ -29,10 +29,11 @@ body{font-family:var(--serif);color:var(--ink);background:var(--cream);min-heigh
 .land.still{transition:none}
 body:has(.land.up){padding-bottom:var(--land)}
 @keyframes landIn{from{opacity:0}to{opacity:1}}
-/* the painting's caption, top right of the land */
+/* the painting's caption, top right of the land — shown only once the land is up: it fades in as the painting arrives and out as it settles */
 .land .caption{position:absolute;top:.9rem;right:1.5rem;z-index:1;font-style:italic;font-size:1rem;letter-spacing:.02em;line-height:1;
-  color:rgba(250,248,243,.9);text-shadow:0 1px 2px rgba(0,0,0,.32);pointer-events:none}
-.land.up .caption{top:1.2rem;right:1.8rem}
+  color:rgba(250,248,243,.9);text-shadow:0 1px 2px rgba(0,0,0,.32);pointer-events:none;opacity:0;transition:opacity .3s ease}
+.land.up .caption{top:1.2rem;right:1.8rem;opacity:1;transition:opacity .5s ease .25s}
+.land.down .caption{opacity:0;transition:opacity .3s ease}
 .land::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(rgba(22,28,48,var(--night)),rgba(22,28,48,var(--night))),linear-gradient(rgba(255,170,90,var(--gold)),rgba(255,170,90,var(--gold)))}
 body.landing{--land:38vh}
@@ -203,7 +204,7 @@ a.title:hover,a.title:focus-visible{background-size:100% 1px}
     background-image:url("/assets/oxbow-imp-rich-900.jpg?v=1");
     background-image:image-set(url("/assets/oxbow-imp-rich-900.webp?v=1") type("image/webp"),url("/assets/oxbow-imp-rich-900.jpg?v=1") type("image/jpeg"))}
 }
-@media (prefers-reduced-motion:reduce){.land{transition:none;animation:none}.mark path{animation:none;stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.land,.land .caption{transition:none;animation:none}.mark path{animation:none;stroke-dashoffset:0}}
 @media print{
   .land,.stamp,.skip,.email-hint .eh-tip{display:none}
   body{background:#fff}

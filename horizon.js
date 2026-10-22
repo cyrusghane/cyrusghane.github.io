@@ -65,7 +65,7 @@
 (function(){
   var land=document.querySelector('.land'); if(!land) return;
   var timer;
-  function settle(){ land.classList.remove('up','down'); land.removeEventListener('transitionend',settle); clearTimeout(timer); }
+  function settle(e){ if(e&&e.target!==land) return; /* the caption's fade bubbles its own transitionend */ land.classList.remove('up','down'); land.removeEventListener('transitionend',settle); clearTimeout(timer); }
   land.addEventListener('click',function(){
     if(land.classList.contains('up') && !land.classList.contains('down')){
       land.classList.add('down'); land.addEventListener('transitionend',settle); timer=setTimeout(settle,900);
