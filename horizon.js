@@ -118,3 +118,22 @@
     wm.addEventListener('mouseenter',function(){ if(!path) return; path.style.animation='none'; path.getBoundingClientRect(); path.style.animation='draw .9s cubic-bezier(.22,.61,.36,1) forwards'; });
   }
 })();
+
+/* the land never covers the sidebar: on short windows it gives up height, down to a floor */
+(function(){
+  var land=document.querySelector('.land'),side=document.querySelector('.side'),body=document.body; if(!land||!side) return;
+  function fit(){
+    if(!matchMedia('(min-width:721px)').matches){ body.style.removeProperty('--land'); return; }   /* phones: the band sits at the end of the page */
+    if(land.classList.contains('up')) return;
+    land.classList.add('still');
+    body.style.removeProperty('--land');
+    var v=getComputedStyle(land).getPropertyValue('--land').trim(),vh=innerHeight;
+    var want=/vh$/.test(v)?parseFloat(v)/100*vh:(parseFloat(v)||vh*.3);
+    var sideBottom=side.getBoundingClientRect().bottom+scrollY,room=vh-sideBottom-22;
+    var h=Math.round(Math.max(Math.min(want,room),Math.min(160,vh*.16)));
+    if(h<want-1) body.style.setProperty('--land',h+'px');
+    land.getBoundingClientRect(); land.classList.remove('still');
+  }
+  fit(); addEventListener('resize',fit);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit);
+})();

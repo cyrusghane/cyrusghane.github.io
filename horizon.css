@@ -26,6 +26,7 @@ body{font-family:var(--serif);color:var(--ink);background:var(--cream);min-heigh
 /* click the land and it lifts to fill the screen — the whole painting, as the site once was; click again or press Escape and it settles back */
 .land.up{position:fixed;left:0;right:0;bottom:0;z-index:20;height:100vh;height:100svh;background-position:center 44%;cursor:zoom-out}
 .land.down{height:var(--land);background-position:center 66%;cursor:zoom-in}
+.land.still{transition:none}
 body:has(.land.up){padding-bottom:var(--land)}
 @keyframes landIn{from{opacity:0}to{opacity:1}}
 /* the painting's caption, top right of the land */
