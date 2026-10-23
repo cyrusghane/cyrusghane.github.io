@@ -76,39 +76,6 @@
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && land.classList.contains('up') && !land.classList.contains('down')) land.click(); });
 })();
 
-/* a hand-drawn arrow from "cloudy days" down to the land: the painting is a view after a thunderstorm */
-(function(){
-  var svg=document.querySelector('.arrow'),cue=document.querySelector('.cue'),land=document.querySelector('.land'); if(!svg||!cue||!land) return;
-  var NS='http://www.w3.org/2000/svg';
-  function build(animate){
-    while(svg.firstChild) svg.removeChild(svg.firstChild);
-    if(!matchMedia('(min-width:861px)').matches) return;
-    var vw=innerWidth,vh=innerHeight; svg.setAttribute('viewBox','0 0 '+vw+' '+vh);
-    var c=cue.getBoundingClientRect(),l=land.getBoundingClientRect();
-    var col=document.querySelector('.main').getBoundingClientRect();
-    var x0=c.left+c.width*.55,y0=c.top-6,xm=Math.min(col.right+56,vw-24),x1=col.right-110,y1=l.top-7;   /* up out of the word into the gap, over to the margin, down to the land */
-    if(y1-y0<140) return;
-    /* a cubic curve, walked in small steps with a little tremor so it reads as a pen line */
-    var p0=[x0,y0],p1=[col.right+40,y0-64],p2=[xm+34,y0+(y1-y0)*.52],p3=[x1,y1],pts=[],n=40;   /* bulges past the column before it comes down */
-    for(var i=0;i<=n;i++){var t=i/n,u=1-t,x=u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0],y=u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1];
-      var w=Math.sin(t*23+7)*1.1+Math.sin(t*7.3)*.8;pts.push([x+w,y+w*.6]);}
-    var path=document.createElementNS(NS,'path');path.setAttribute('d','M'+pts.map(function(q){return q[0].toFixed(1)+' '+q[1].toFixed(1)}).join(' L'));svg.appendChild(path);
-    var a=pts[n],b=pts[n-3],ang=Math.atan2(a[1]-b[1],a[0]-b[0]);
-    function tip(da){return (a[0]-11*Math.cos(ang+da)).toFixed(1)+' '+(a[1]-11*Math.sin(ang+da)).toFixed(1)}
-    var head=document.createElementNS(NS,'path');head.setAttribute('d','M'+tip(.5)+' L'+a[0].toFixed(1)+' '+a[1].toFixed(1)+' L'+tip(-.5));svg.appendChild(head);
-    var len=path.getTotalLength();path.style.strokeDasharray=len;
-    if(animate){
-      path.style.strokeDashoffset=len;head.style.opacity=0;
-      requestAnimationFrame(function(){requestAnimationFrame(function(){
-        path.style.transition='stroke-dashoffset 1.2s cubic-bezier(.22,.61,.36,1) 1s';path.style.strokeDashoffset=0;
-        head.style.transition='opacity .4s ease 2.1s';head.style.opacity=1;});});
-    } else { path.style.strokeDashoffset=0; }
-  }
-  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){build(!reduce)}); else build(!reduce);
-  addEventListener('resize',function(){build(false)});addEventListener('scroll',function(){build(false)},{passive:true});
-})();
-
 /* "surprises" lifts the land; hovering the name redraws the river beneath it */
 (function(){
   var land=document.querySelector('.land'),cue=document.querySelector('.cue2'),wm=document.querySelector('.wordmark');
