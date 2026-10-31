@@ -17,7 +17,7 @@ body{font-family:var(--serif);color:var(--ink);background:var(--cream);min-heigh
 .site{flex:1 0 auto;display:grid;grid-template-columns:13.5rem minmax(0,44rem);column-gap:5rem;justify-content:center;align-items:start;align-content:start;padding:4.5rem var(--gutter) 3rem}
 /* the land lies along the foot of the screen and stays there while the words scroll above it;
    horizon.js tints it with the light of the New Haven hour (--night, --gold) */
-.land{position:sticky;bottom:0;z-index:1;flex:0 0 auto;height:var(--land);min-height:160px;border-top:1px solid var(--hair);
+.land{position:sticky;bottom:0;z-index:1;flex:0 0 auto;height:var(--land);min-height:100px;border-top:1px solid var(--hair);
   background:url("/assets/oxbow-imp-rich.jpg?v=1") center 66%/cover no-repeat;
   background-image:image-set(url("/assets/oxbow-imp-rich.webp?v=1") type("image/webp"),url("/assets/oxbow-imp-rich.jpg?v=1") type("image/jpeg"));
   --night:0;--gold:0;animation:landIn .9s ease both;
@@ -195,7 +195,7 @@ a.title:hover,a.title:focus-visible{background-size:100% 1px}
   .when{padding-top:0;font-size:.95rem}
   .post{max-width:none}
   .land .caption{font-size:.9rem;top:.75rem;right:1.1rem}
-  .land:not(.up){position:relative;background-size:190% auto;background-position:58% 64%;
+  .land:not(.up){position:relative;min-height:160px;background-size:190% auto;background-position:58% 64%;
     background-image:url("/assets/oxbow-imp-rich-900.jpg?v=1");
     background-image:image-set(url("/assets/oxbow-imp-rich-900.webp?v=1") type("image/webp"),url("/assets/oxbow-imp-rich-900.jpg?v=1") type("image/jpeg"))}
 }

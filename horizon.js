@@ -86,9 +86,10 @@
   }
 })();
 
-/* the land never covers the sidebar: on short windows it gives up height, down to a floor */
+/* the land never covers the sidebar, nor a short list like the work page: on short windows it gives up height, down to a floor */
 (function(){
   var land=document.querySelector('.land'),side=document.querySelector('.side'),body=document.body; if(!land||!side) return;
+  var list=document.querySelector('.main .list'),last=list&&list.querySelector('li:last-child > :last-child');
   function fit(){
     if(!matchMedia('(min-width:721px)').matches){ body.style.removeProperty('--land'); return; }   /* phones: the band sits at the end of the page */
     if(land.classList.contains('up')) return;
@@ -98,6 +99,8 @@
     var want=/vh$/.test(v)?parseFloat(v)/100*vh:(parseFloat(v)||vh*.3);
     var sideBottom=side.getBoundingClientRect().bottom+scrollY,room=vh-sideBottom-22;
     var h=Math.round(Math.max(Math.min(want,room),Math.min(160,vh*.16)));
+    /* the list's last line (a paper, a poster) stays in view: the land goes thinner for it, to a lower floor, but only when that shows the whole list */
+    if(last){ var listRoom=Math.round(vh-(last.getBoundingClientRect().bottom+scrollY)-14),floor=Math.max(100,Math.round(vh*.14)); if(listRoom<h&&listRoom>=floor) h=listRoom; }
     if(h<want-1) body.style.setProperty('--land',h+'px');
     land.getBoundingClientRect(); land.classList.remove('still');
   }
