@@ -12,7 +12,7 @@
   }
   tick(); setInterval(tick,1000);
 })();
-/* contact: on a desktop, clicking an email link copies the address instead of opening a mail app — phones keep mailto */
+/* contact: on a desktop, clicking an email link copies the address instead of opening a mail app - phones keep mailto */
 (function(){
   if(!navigator.clipboard || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   Array.prototype.forEach.call(document.querySelectorAll('a[href^="mailto:"]'),function(a){
@@ -61,11 +61,11 @@
   }
   set();setInterval(set,60000);
 })();
-/* click the land and it lifts to fill the screen (the whole painting); click again or press Escape and it settles back */
+/* click the land and it lifts to hang on the wall (the whole painting); click it again, click the wall, or press Escape and it settles back */
 (function(){
   var land=document.querySelector('.land'); if(!land) return;
-  var timer;
-  function settle(e){ if(e&&e.target!==land) return; /* the caption's fade bubbles its own transitionend */ land.classList.remove('up','down'); land.removeEventListener('transitionend',settle); clearTimeout(timer); }
+  var wall=document.querySelector('.wall'),timer;
+  function settle(e){ if(e&&(e.target!==land||e.propertyName!=='height')) return; /* one transitionend fires per property: wait for the height's */ land.classList.remove('up','down'); land.removeEventListener('transitionend',settle); clearTimeout(timer); }
   land.addEventListener('click',function(){
     if(land.classList.contains('up') && !land.classList.contains('down')){
       land.classList.add('down'); land.addEventListener('transitionend',settle); timer=setTimeout(settle,900);
@@ -74,16 +74,22 @@
     }
   });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && land.classList.contains('up') && !land.classList.contains('down')) land.click(); });
+  if(wall) wall.addEventListener('click',function(e){ if(e.target.closest('a')) return; /* the credit's link is not the wall */ if(land.classList.contains('up')) land.click(); });
 })();
 
-/* "surprises" lifts the land; hovering the name redraws the river beneath it */
+/* "surprises" lifts the land; hovering the name redraws the river beneath it; hovering a blog's row redraws its drawing */
 (function(){
   var land=document.querySelector('.land'),cue=document.querySelector('.cue2'),wm=document.querySelector('.wordmark');
   if(land&&cue) cue.addEventListener('click',function(e){ e.preventDefault(); if(!land.classList.contains('up')) land.click(); });
-  if(wm&&matchMedia('(hover:hover)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  if(!matchMedia('(hover:hover)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  if(wm){
     var path=wm.querySelector('.mark path');
     wm.addEventListener('mouseenter',function(){ if(!path) return; path.style.animation='none'; path.getBoundingClientRect(); path.style.animation='draw .9s cubic-bezier(.22,.61,.36,1) forwards'; });
   }
+  Array.prototype.forEach.call(document.querySelectorAll('.list li'),function(li){
+    var g=li.querySelector('.glyph'); if(!g) return;
+    li.addEventListener('mouseenter',function(){ g.style.setProperty('--d0','0s'); /* no wait this time */ g.classList.add('re'); g.getBoundingClientRect(); g.classList.remove('re'); });
+  });
 })();
 
 /* the land never covers the sidebar, nor a short list like the work page: on short windows it gives up height, down to a floor */
