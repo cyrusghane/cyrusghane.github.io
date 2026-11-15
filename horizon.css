@@ -34,6 +34,8 @@ body{font-family:var(--serif);color:var(--ink);background:var(--cream);min-heigh
 .land.up{position:fixed;left:calc((100% - var(--fw))/2);bottom:calc(var(--fb) + var(--label));z-index:20;width:var(--fw);height:var(--fh);min-height:0;background-position:center;border-top-color:transparent;cursor:zoom-out}
 .land.down{left:0;bottom:0;width:100%;height:var(--land);background-position:center 66%;border-top-color:var(--hair);cursor:zoom-in}
 .land.still{transition:none}
+/* the land's keyboard focus ring is drawn just inside its edge (cream, then ink): an outline around a full-width band would only show as a dark line across the page */
+.land:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--cream),inset 0 0 0 3.5px var(--ink-80)}
 body:has(.land.up){padding-bottom:var(--land)}
 @keyframes landIn{from{opacity:0}to{opacity:1}}
 /* the wall the lifted painting hangs on: the cream page closes over the words, and the credit appears under the frame */
