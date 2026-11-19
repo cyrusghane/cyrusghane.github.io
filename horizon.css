@@ -24,8 +24,8 @@ body{font-family:var(--serif);color:var(--ink);background:var(--cream);min-heigh
 /* the land lies along the foot of the screen and stays there while the words scroll above it;
    horizon.js tints it with the light of the New Haven hour (--night, --gold) */
 .land{position:sticky;left:0;bottom:0;z-index:1;flex:0 0 auto;height:var(--land);min-height:100px;border-top:1px solid var(--hair);
-  background:url("/assets/oxbow-imp-rich.jpg?v=1") center 66%/cover no-repeat;
-  background-image:image-set(url("/assets/oxbow-imp-rich.webp?v=1") type("image/webp"),url("/assets/oxbow-imp-rich.jpg?v=1") type("image/jpeg"));
+  background:url("/assets/oxbow-grade.jpg?v=1") center 66%/cover no-repeat;
+  background-image:image-set(url("/assets/oxbow-grade.webp?v=1") type("image/webp"),url("/assets/oxbow-grade.jpg?v=1") type("image/jpeg"));
   --night:0;--gold:0;animation:landIn .9s ease both;
   display:block;width:100%;padding:0;border-top:1px solid var(--hair);border-left:0;border-right:0;border-bottom:0;font:inherit;appearance:none;-webkit-appearance:none;
   cursor:zoom-in;transition:height .8s cubic-bezier(.22,.61,.36,1),width .8s cubic-bezier(.22,.61,.36,1),left .8s cubic-bezier(.22,.61,.36,1),bottom .8s cubic-bezier(.22,.61,.36,1),background-position .8s cubic-bezier(.22,.61,.36,1)}
@@ -223,8 +223,8 @@ a.title:hover,a.title:focus-visible{background-size:100% 1px}
   .glyph{width:calc(var(--w)*.046rem);margin:0}
   .post{max-width:none}
   .land:not(.up){position:relative;min-height:160px;background-size:190% auto;background-position:58% 64%;
-    background-image:url("/assets/oxbow-imp-rich-900.jpg?v=1");
-    background-image:image-set(url("/assets/oxbow-imp-rich-900.webp?v=1") type("image/webp"),url("/assets/oxbow-imp-rich-900.jpg?v=1") type("image/jpeg"))}
+    background-image:url("/assets/oxbow-grade-900.jpg?v=1");
+    background-image:image-set(url("/assets/oxbow-grade-900.webp?v=1") type("image/webp"),url("/assets/oxbow-grade-900.jpg?v=1") type("image/jpeg"))}
 }
 @media (prefers-reduced-motion:reduce){.land{transition:none;animation:none}.mark path,.post figure.stair path,.glyph path{animation:none;stroke-dashoffset:0}}
 @media print{
